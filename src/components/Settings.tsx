@@ -1,7 +1,10 @@
+import InputContainer from "./InputContainer"
+
 export default function Settings(props: any): any {
     return (
         <>
-            <div>Du bist in Settings</div>
+            <h1>Breath of the Wild - Lockout</h1>
+            <InputContainer />
         </>
     )
 }
