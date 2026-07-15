@@ -4,8 +4,13 @@ import './App.css'
 import Board from './components/Board'
 import Settings from './components/Settings'
 
-function App() {
+export default function App() {
   const [isGenerated, setIsGenerated] = useState(false)
+
+  const generateBoardHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    setIsGenerated(true)
+  }
 
   if(isGenerated) {
     return (
@@ -17,11 +22,10 @@ function App() {
   else {
     return (
       <>
-        <Settings />
+        <Settings
+          generateBoardHandler={generateBoardHandler}
+        />
       </>
     )
   }
-
 }
-
-export default App

@@ -1,14 +1,17 @@
-import Input from "./Input"
+import Dropdown from "./Dropdown"
+import Button from "./Button"
 
-export default function InputContainer(props: any): any {
+export default function InputContainer({ generateBoardHandler }: any): any {
     return (
         <>
             <div>
-                <Input />
-                <Input />
-                <Input />
-                <Input />
+                <Dropdown />
+                <Dropdown />
+                <Dropdown />
             </div>
+            <Button
+                generateBoardHandler={generateBoardHandler}
+            ></Button>
         </>
     )
 }

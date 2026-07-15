@@ -1,10 +1,12 @@
 import InputContainer from "./InputContainer"
 
-export default function Settings(props: any): any {
+export default function Settings({ generateBoardHandler }: any): any {
     return (
         <>
             <h1>Breath of the Wild - Lockout</h1>
-            <InputContainer />
+            <InputContainer
+                generateBoardHandler={generateBoardHandler}
+            />
         </>
     )
 }
