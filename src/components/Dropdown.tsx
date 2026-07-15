@@ -1,7 +1,33 @@
 import { useState } from "react"
 
-export default function Dropdown(props: any): any {
+type DropdownVariant =
+    | "grid-settings"
+    | "difficulty-settings"
+    | "timer-settings"
+
+type DropdownProps = {
+    variant: DropdownVariant
+}
+
+export default function Dropdown({variant}: DropdownProps) {
     const [isOpen, setIsOpen] = useState(false)
+
+    const dropdownData = {
+        "grid-settings": {
+            title: "Grid",
+            options: ["5x5", "4x4", "3x3"]
+        },
+        "difficulty-settings": {
+            title: "Difficulty",
+            options: ["Leicht", "Mittel", "Schwer"]
+        },
+        "timer-settings": {
+            title: "Timer",
+            options: ["Hochzählen", "Runterzählen"]
+        }
+    }
+
+    const dropdown = dropdownData[variant]
 
     const clickHanlder = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
@@ -14,15 +40,15 @@ export default function Dropdown(props: any): any {
                 onClick={clickHanlder}
                 className="btn_settings"
             >
-                Test
+                {dropdown.title}
             </button>
 
             {isOpen && (
-                <div className="dropdown">
-                    <div>Value 1</div>
-                    <div>Value 2</div>
-                    <div>Value 3</div>
-                </div>
+                <>
+                    {dropdown.options.map((option => (
+                        <div key={option}>{option}</div>
+                    )))}
+                </>
             )}
         </div>
     )
