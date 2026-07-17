@@ -4,34 +4,33 @@ import './App.css'
 import Board from './components/Board'
 import Settings from './components/Settings'
 
-import type { GridSettings, DifficultySettings, TimerSettings } from "./types/settings"
+import type { GridSettings, DifficultySettings, TimerSettings, GameSettings } from "./types/settings"
 
 export default function App() {
   const [isGenerated, setIsGenerated] = useState(false)
 
-  const [gridSettings, setGridSettings] = useState<GridSettings>({
-    rows: 5,
-    cols: 5
+  const [gameSettings, setGameSettings] = useState<GameSettings>({
+    grid: {
+      rows: 5,
+      cols: 5
+    },
+    difficulty: "medium",
+    timer: "count_up"
   })
-  const [difficultySettings, setDifficultySettings] = useState<DifficultySettings>("medium")
-  const [timerSettings, setTimerSettings] = useState<TimerSettings>("count_up")
-
-  const settings = {
-    gridSettings,
-    difficultySettings,
-    timerSettings
-  }
 
   const gridSettingsHandler = (value: GridSettings) => {
-    setGridSettings(value)
+    let newSettings = {...gameSettings, grid: value}
+    setGameSettings(newSettings)
   }
 
   const difficultySettingsHandler = (value: DifficultySettings) => {
-    setDifficultySettings(value)
+    let newSettings = {...gameSettings, difficulty: value}
+    setGameSettings(newSettings)
   }
 
   const timerSettingsHandler = (value: TimerSettings) => {
-    setTimerSettings(value)
+    let newSettings = {...gameSettings, timer: value}
+    setGameSettings(newSettings)
   }
 
   const dropdownHandlers = {
@@ -48,7 +47,7 @@ export default function App() {
   return (
     <>
       {isGenerated ? (
-        <Board settings={settings}/>
+        <Board settings={gameSettings}/>
       ) : (
         <Settings
           generateBoardHandler={generateBoardHandler}
