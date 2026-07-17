@@ -1,8 +1,6 @@
 import InputContainer from "./InputContainer"
 import { settingsOptions } from "../data/settingsOptions"
-import type { SettingsProps } from "../types/settings"
-
-
+import type { SettingsProps } from "../types/components"
 
 export default function Settings({ generateBoardHandler, dropdownHandlers }: SettingsProps) {
     return (

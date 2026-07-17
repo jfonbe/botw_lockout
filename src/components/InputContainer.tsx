@@ -1,6 +1,6 @@
 import Dropdown from "./Dropdown"
 import Button from "./Button"
-import type { SettingsOptions, DropdownHandlerProps } from "../types/settings"
+import type { SettingsOptions, DropdownHandlerProps } from "../types/components"
 
 type InputContainerProps = {
     settingsOptions: SettingsOptions,
@@ -15,17 +15,14 @@ export default function InputContainer({settingsOptions, dropdownHandlers, gener
                 <Dropdown
                     settings={settingsOptions.grid}
                     dropdownHandler={dropdownHandlers.gridSettingsHandler}
-                    variant="grid-settings"
                 />
                 <Dropdown
                     settings={settingsOptions.difficulty}
                     dropdownHandler={dropdownHandlers.difficultySettingsHandler}
-                    variant="difficulty-settings"
                 />
                 <Dropdown
                     settings={settingsOptions.timer}
                     dropdownHandler={dropdownHandlers.timerSettingsHandler}
-                    variant="timer-settings"
                 />
             </div>
             <Button

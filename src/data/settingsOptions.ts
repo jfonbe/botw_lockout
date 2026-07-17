@@ -1,14 +1,16 @@
-export const settingsOptions = {
+import type { SettingsOptions } from "../types/components"
+
+export const settingsOptions: SettingsOptions = {
     grid: {
         title: "Grid",
-        options: ["5x5", "4x4", "3x3"]
+        options: [{rows: 5, cols: 5}, {rows: 4, cols: 4}, {rows: 6, cols: 6}]
     },
     difficulty: {
         title: "Difficulty",
-        options: ["Leicht", "Mittel", "Schwer"]
+        options: ["leicht", "mittel", "schwer"]
     },
     timer: {
         title: "Timer",
-        options: ["Hochzählen", "Runterzählen"]
+        options: ["count_up", "count_down"]
     }
 }
