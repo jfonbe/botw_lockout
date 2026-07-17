@@ -4,9 +4,14 @@ import type {
     TimerSettings
 } from "./settings"
 
+export type Options<T> = {
+    label: string,
+    value: T
+}
+
 export type DropdownSettings<T> = {
     title: string,
-    options: T[]
+    options: Options<T>[]
 }
 
 export type SettingsOptions = {

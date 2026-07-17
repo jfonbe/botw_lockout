@@ -13,7 +13,7 @@ export default function App() {
     rows: 5,
     cols: 5
   })
-  const [difficultySettings, setDifficultySettings] = useState<DifficultySettings>("mittel")
+  const [difficultySettings, setDifficultySettings] = useState<DifficultySettings>("medium")
   const [timerSettings, setTimerSettings] = useState<TimerSettings>("count_up")
 
   const settings = {

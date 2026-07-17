@@ -4,9 +4,9 @@ export type GridSettings = {
 }
 
 export type DifficultySettings =
-    | "leicht"
-    | "mittel"
-    | "schwer"
+    | "easy"
+    | "medium"
+    | "hard"
 
 export type TimerSettings =
     | "count_up"

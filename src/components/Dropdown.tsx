@@ -4,11 +4,10 @@ import type { DropdownSettings } from "../types/components"
 type DropdownProps<T> = {
     settings: DropdownSettings<T>,
     dropdownHandler: (value: T) => void,
-    renderOption: (value: T) => React.ReactNode,
     getKey: (value: T) => React.Key
 }
 
-export default function Dropdown<T> ({settings, dropdownHandler, renderOption, getKey}: DropdownProps<T>) {
+export default function Dropdown<T> ({settings, dropdownHandler, getKey}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState(false)
 
     const clickHanlder = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,10 +28,10 @@ export default function Dropdown<T> ({settings, dropdownHandler, renderOption, g
                 <>
                     {settings.options.map((option => (
                         <div
-                            key={getKey(option)}
-                            onClick={() => dropdownHandler(option)}
+                            key={getKey(option.value)}
+                            onClick={() => dropdownHandler(option.value)}
                         >
-                            {renderOption(option)}
+                            {option.label}
                         </div>
                     )))}
                 </>
