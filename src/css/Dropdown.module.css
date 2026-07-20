@@ -1,0 +1,27 @@
+.dropdown {
+    display: flex;
+    flex-direction: column;
+
+    width: 30%;
+    height: 100%;
+
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.button {
+    height: 40px;
+
+    background-color: var(--bg-color-1);
+    color: var(--fg-color);
+
+    border: 1px solid var(--fg-color);
+    border-radius: 6px;
+
+    text-align: left;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

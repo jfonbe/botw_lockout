@@ -1,0 +1,20 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    color: var(--fg-color);
+}
+
+.title {
+    font-size: 60px;
+    text-transform: uppercase;
+
+    text-shadow: 0 0 10px var(--fg-color);
+
+    margin-bottom: 50px;
+}

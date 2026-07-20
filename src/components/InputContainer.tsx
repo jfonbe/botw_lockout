@@ -2,6 +2,8 @@ import Dropdown from "./Dropdown"
 import Button from "./Button"
 import type { SettingsOptions, DropdownHandlerProps } from "../types/components"
 
+import styles from "../css/InputContainer.module.css"
+
 type InputContainerProps = {
     settingsOptions: SettingsOptions,
     dropdownHandlers: DropdownHandlerProps,
@@ -10,8 +12,8 @@ type InputContainerProps = {
 
 export default function InputContainer({settingsOptions, dropdownHandlers, generateBoardHandler }: InputContainerProps) {
     return (
-        <>
-            <div>
+        <div className={styles.inputContainer}>
+            <div className={styles.dropdownContainer}>
                 <Dropdown
                     settings={settingsOptions.grid}
                     dropdownHandler={dropdownHandlers.gridSettingsHandler}
@@ -31,6 +33,6 @@ export default function InputContainer({settingsOptions, dropdownHandlers, gener
             <Button
                 generateBoardHandler={generateBoardHandler}
             ></Button>
-        </>
+        </div>
     )
 }

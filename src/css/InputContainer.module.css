@@ -1,0 +1,19 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 18%;
+    width: 95%;
+
+    background-color: var(--bg-color-2);
+
+    border-radius: 10px;
+}
+
+.dropdownContainer {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 20px;
+}
