@@ -7,14 +7,14 @@
     height: 100%;
     width: 100%;
 
-    color: var(--fg-color);
+    color: var(--fg-color-2);
 }
 
 .title {
     font-size: 60px;
     text-transform: uppercase;
 
-    text-shadow: 0 0 10px var(--fg-color);
+    text-shadow: 0 0 10px var(--fg-color-2);
 
     margin-bottom: 50px;
 }

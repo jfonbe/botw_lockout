@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import type { DropdownSettings } from "../types/components"
-
 import styles from "../css/Dropdown.module.css"
 
 type DropdownProps<T> = {
@@ -19,7 +18,9 @@ export default function Dropdown<T> ({settings, dropdownHandler, getKey}: Dropdo
 
     return (
         <div className={styles.dropdown}>
-            <label>{settings.title}</label>
+            <label
+                className={styles.label}
+            >{settings.title}</label>
             <button
                 onClick={clickHanlder}
                 className={styles.button}
