@@ -21,18 +21,21 @@ export default function InputContainer({settingsOptions, dropdownHandlers, gener
                     dropdownHandler={dropdownHandlers.gridSettingsHandler}
                     currentSetting={currentSettings.grid}
                     getValueKey={(option) => `${option.rows}-${option.cols}`}
+                    variant="grid"
                 />
                 <Dropdown
                     settings={settingsOptions.difficulty}
                     dropdownHandler={dropdownHandlers.difficultySettingsHandler}
                     currentSetting={currentSettings.difficulty}
                     getValueKey={(option) => option}
+                    variant="difficulty"
                 />
                 <Dropdown
                     settings={settingsOptions.timer}
                     dropdownHandler={dropdownHandlers.timerSettingsHandler}
                     currentSetting={currentSettings.timer}
                     getValueKey={(option) => option}
+                    variant="timer"
                 />
             </div>
             <Button

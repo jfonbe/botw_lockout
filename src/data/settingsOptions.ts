@@ -31,7 +31,7 @@ export const settingsOptions: SettingsOptions = {
         ]
     },
     difficulty: {
-        title: "Difficulty",
+        title: "Schwierigkeit",
         options: [{
             label: "Leicht",
             value: "easy"
