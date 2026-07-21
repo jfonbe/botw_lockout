@@ -25,7 +25,7 @@ export default function Dropdown<T> ({settings, dropdownHandler, currentSetting,
         <div className={styles.dropdown}>
             <label
                 className={styles.label}
-            >{}</label>
+            >{settings.title}</label>
             <button
                 onClick={clickHanlder}
                 className={styles.button}
