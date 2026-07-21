@@ -3,7 +3,7 @@ import { settingsOptions } from "../data/settingsOptions"
 import type { SettingsProps } from "../types/components"
 import styles from "../css/Settings.module.css"
 
-export default function Settings({ generateBoardHandler, dropdownHandlers }: SettingsProps) {
+export default function Settings({ generateBoardHandler, dropdownHandlers, gameSettings }: SettingsProps) {
     return (
         <div className={styles.settings}>
             <h1 className={styles.title}>Breath of the Wild - Lockout</h1>
@@ -11,6 +11,7 @@ export default function Settings({ generateBoardHandler, dropdownHandlers }: Set
                 settingsOptions={settingsOptions}
                 dropdownHandlers={dropdownHandlers}
                 generateBoardHandler={generateBoardHandler}
+                currentSettings={gameSettings}
             />
         </div>
     )

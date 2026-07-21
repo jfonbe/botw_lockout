@@ -1,7 +1,8 @@
 import type {
     GridSettings,
     DifficultySettings,
-    TimerSettings
+    TimerSettings,
+    GameSettings
 } from "./settings"
 
 export type Options<T> = {
@@ -28,6 +29,7 @@ export type DropdownHandlerProps = {
 
 export type SettingsProps = {
     generateBoardHandler: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    dropdownHandlers: DropdownHandlerProps
+    dropdownHandlers: DropdownHandlerProps,
+    gameSettings: GameSettings
 }
 

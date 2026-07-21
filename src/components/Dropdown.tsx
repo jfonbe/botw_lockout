@@ -5,10 +5,11 @@ import styles from "../css/Dropdown.module.css"
 type DropdownProps<T> = {
     settings: DropdownSettings<T>,
     dropdownHandler: (value: T) => void,
-    getKey: (value: T) => React.Key
+    currentSetting: T,
+    getValueKey: (value: T) => React.Key
 }
 
-export default function Dropdown<T> ({settings, dropdownHandler, getKey}: DropdownProps<T>) {
+export default function Dropdown<T> ({settings, dropdownHandler, currentSetting, getValueKey}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState(false)
 
     const clickHanlder = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -16,24 +17,31 @@ export default function Dropdown<T> ({settings, dropdownHandler, getKey}: Dropdo
         setIsOpen(!isOpen)
     }
 
+    const currentOption = settings.options.find(
+        option => getValueKey(option.value) === getValueKey(currentSetting)
+    )
+
     return (
         <div className={styles.dropdown}>
             <label
                 className={styles.label}
-            >{settings.title}</label>
+            >{}</label>
             <button
                 onClick={clickHanlder}
                 className={styles.button}
             >
-                {settings.title}
+                {currentOption?.label ?? settings.title}
             </button>
 
             {isOpen && (
                 <>
                     {settings.options.map((option => (
                         <div
-                            key={getKey(option.value)}
-                            onClick={() => dropdownHandler(option.value)}
+                            key={getValueKey(option.value)}
+                            onClick={() => {
+                                dropdownHandler(option.value)
+                                setIsOpen(false)
+                            }}
                         >
                             {option.label}
                         </div>

@@ -19,18 +19,24 @@ export default function App() {
   })
 
   const gridSettingsHandler = (value: GridSettings) => {
-    let newSettings = {...gameSettings, grid: value}
-    setGameSettings(newSettings)
+    setGameSettings(prev => ({
+      ...prev,
+      grid: value
+    }))
   }
 
   const difficultySettingsHandler = (value: DifficultySettings) => {
-    let newSettings = {...gameSettings, difficulty: value}
-    setGameSettings(newSettings)
+    setGameSettings(prev => ({
+      ...prev,
+      difficulty: value
+    }))
   }
 
   const timerSettingsHandler = (value: TimerSettings) => {
-    let newSettings = {...gameSettings, timer: value}
-    setGameSettings(newSettings)
+    setGameSettings(prev => ({
+      ...prev,
+      timer: value
+    }))
   }
 
   const dropdownHandlers = {
@@ -52,6 +58,7 @@ export default function App() {
         <Settings
           generateBoardHandler={generateBoardHandler}
           dropdownHandlers={dropdownHandlers}
+          gameSettings={gameSettings}
         />
       )}
     </>

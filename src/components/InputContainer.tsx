@@ -3,31 +3,36 @@ import Button from "./Button"
 import type { SettingsOptions, DropdownHandlerProps } from "../types/components"
 
 import styles from "../css/InputContainer.module.css"
+import type { GameSettings } from "../types/settings"
 
 type InputContainerProps = {
     settingsOptions: SettingsOptions,
     dropdownHandlers: DropdownHandlerProps,
-    generateBoardHandler: (event: React.MouseEvent<HTMLButtonElement>) => void
+    generateBoardHandler: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    currentSettings: GameSettings
 }
 
-export default function InputContainer({settingsOptions, dropdownHandlers, generateBoardHandler }: InputContainerProps) {
+export default function InputContainer({settingsOptions, dropdownHandlers, generateBoardHandler, currentSettings }: InputContainerProps) {
     return (
         <div className={styles.inputContainer}>
             <div className={styles.dropdownContainer}>
                 <Dropdown
                     settings={settingsOptions.grid}
                     dropdownHandler={dropdownHandlers.gridSettingsHandler}
-                    getKey={(option) => `${option.rows}-${option.cols}`}
+                    currentSetting={currentSettings.grid}
+                    getValueKey={(option) => `${option.rows}-${option.cols}`}
                 />
                 <Dropdown
                     settings={settingsOptions.difficulty}
                     dropdownHandler={dropdownHandlers.difficultySettingsHandler}
-                    getKey={(option) => option}
+                    currentSetting={currentSettings.difficulty}
+                    getValueKey={(option) => option}
                 />
                 <Dropdown
                     settings={settingsOptions.timer}
                     dropdownHandler={dropdownHandlers.timerSettingsHandler}
-                    getKey={(option) => option}
+                    currentSetting={currentSettings.timer}
+                    getValueKey={(option) => option}
                 />
             </div>
             <Button
