@@ -17,13 +17,23 @@
 
     position: relative;
 
-    width: 30%;
+    width: calc(100%/3);
     height: 100%;
+    margin: 0 5px;
 
     font-size: 13px;
 
     text-transform: uppercase;
     letter-spacing: 2px;
+}
+
+.dropdown:last-child {
+    margin-right: 0px;
+}
+
+
+.dropdown:first-child {
+    margin-left: 0px;
 }
 
 .button {
@@ -39,11 +49,11 @@
     text-align: left;
 
     transition: border-color 0.3s;
+}
 
-    &:hover {
-        cursor: pointer;
-        border: 1px solid var(--fg-color-2);
-    }
+.button:hover {
+    cursor: pointer;
+    border: 1px solid var(--fg-color-2);
 }
 
 .label {
@@ -54,13 +64,14 @@
 
 .dropdownMenu {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
 
     position: absolute;
-    top: 120%;
+    top: 115%;
 
-    width: calc(100% - 2px);
+    width: calc(100% - 22px);
+    padding: 10px;
 
     border-radius: 6px;
 
@@ -68,7 +79,6 @@
     border: 1px solid var(--fg-color-1);
 
     animation: slideIn 200ms ease;
-
 }
 
 .dropdownOption {
@@ -76,27 +86,29 @@
     justify-content: center;
     align-items: center;
 
-    margin: 4%;
+    height: 40px;
+    margin: 5px;
 
     background-color: var(--bg-color-2);
     border-radius: 6px;
 
-    &:hover {
-        cursor: pointer;
-    }
+    transition: transform 0.2s ease;
+}
+
+.dropdownOption:hover {
+    transform: translateY(-2px);
+    color: var(--green-color);
+    cursor: pointer;
 }
 
 .grid {
-    height: 40px;
-    width: calc(70% / 3);
+    width: calc((100% - 30px) / 3);
 }
 
 .difficulty {
-    height: 40px;
-    width: calc(70% / 3);
+    width: calc((100% - 30px) / 3);
 }
 
 .timer {
-    height: 40px;
-    width: calc(80% / 2);
+    width: calc((100% - 20px) / 2);
 }
