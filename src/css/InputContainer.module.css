@@ -4,7 +4,7 @@
     justify-content: space-between;
 
     height: 20%;
-    width: 90%;
+    width: calc(100% - 100px);
     padding: 20px;
 
     background-color: var(--bg-color-2);
@@ -15,4 +15,26 @@
 .dropdownContainer {
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .inputContainer {
+        height: 40%;
+    }
+
+    .dropdownContainer {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inputContainer {
+        height: 50%;
+    }
+
+    .dropdownContainer {
+        flex-direction: column;
+        gap: 30px;
+    }
 }
