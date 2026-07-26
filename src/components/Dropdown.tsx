@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import type { DropdownSettings } from "../types/components"
 import styles from "../css/Dropdown.module.css"
 
@@ -15,6 +15,21 @@ type DropdownProps<T> = {
 
 export default function Dropdown<T> ({settings, dropdownHandler, currentSetting, getValueKey, variant}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState(false)
+    const dropdownRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
 
     const clickHanlder = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
@@ -25,9 +40,10 @@ export default function Dropdown<T> ({settings, dropdownHandler, currentSetting,
         option => getValueKey(option.value) === getValueKey(currentSetting)
     )
 
-
     return (
-        <div className={styles.dropdown}>
+        <div
+            ref={dropdownRef}
+            className={styles.dropdown}>
             <label
                 className={styles.label}
             >{settings.title}</label>
