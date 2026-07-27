@@ -13,7 +13,7 @@ export default function Board({ settings }: BoardProps) {
             <h2>Breath of the Wild - Lockout</h2>
             <BingoGrid />
             <Timer
-                timerSettings={settings.timer}
+                mode={settings.timer}
             />
         </div>
     )
