@@ -11,7 +11,9 @@ export default function Board({ settings }: BoardProps) {
     return (
         <div>
             <h2>Breath of the Wild - Lockout</h2>
-            <BingoGrid />
+            <BingoGrid
+                gridSize={settings.grid}
+            />
             <Timer
                 mode={settings.timer}
             />
