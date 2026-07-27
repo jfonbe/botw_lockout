@@ -1,0 +1,20 @@
+.board {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+.heading {
+    margin: 0;
+
+    font-size: 32px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--fg-color-2);
+    text-shadow: 0 0 10px var(--fg-color-2);
+}
+

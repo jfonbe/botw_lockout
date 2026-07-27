@@ -1,0 +1,43 @@
+.bingoGrid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 600px;
+    width: 600px;
+
+    padding: 10px;
+
+    background-color: var(--bg-color-2);
+    border-radius: 15px;
+}
+
+.gridRow {
+    display: flex;
+    justify-content: center;
+
+    flex: 1;
+    width: 100%;
+}
+
+.bingoButton {
+    flex: 1;
+    margin: 4px;
+    padding: 0;
+
+    background-color: var(--bg-color-1);
+    color: var(--fg-color-2);
+    border: 2px solid var(--fg-color-1);
+    border-radius: 10px;
+
+    transition: border-color 0.2s ease, transform 0.3s ease;
+}
+
+.bingoButton:hover {
+    cursor: pointer;
+    color: var(--green-color);
+    border-color: var(--green-color);
+
+    transform: translateY(-2px);
+}

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import type { TimerSettings } from "../types/settings"
 
+import styles from "../css/Timer.module.css"
+
 type TimerProps = {
     mode: TimerSettings
 }
@@ -40,6 +42,10 @@ export default function Timer({ mode }: TimerProps) {
         : `${format(minutes)}:${format(seconds)}:${milliseconds}0`
 
     return (
-        <div>{counterString}</div>
+        <div
+            className={styles.timer}
+        >
+            {counterString}
+        </div>
     )
 }

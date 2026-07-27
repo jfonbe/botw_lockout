@@ -6,7 +6,7 @@ import styles from "../css/Settings.module.css"
 export default function Settings({ generateBoardHandler, dropdownHandlers, gameSettings }: SettingsProps) {
     return (
         <div className={styles.settings}>
-            <h1 className={styles.title}>Breath of the Wild - Lockout</h1>
+            <h1 className={styles.heading}>Breath of the Wild - Lockout</h1>
             <InputContainer
                 settingsOptions={settingsOptions}
                 dropdownHandlers={dropdownHandlers}
