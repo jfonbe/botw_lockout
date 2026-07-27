@@ -1,13 +1,20 @@
 import type { GameSettings } from "../types/settings"
 
+import BingoGrid from "./BingoGrid"
+import Timer from "./Timer"
+
 type BoardProps = {
     settings: GameSettings
 }
 
-export default function Board({settings}: BoardProps) {
+export default function Board({ settings }: BoardProps) {
     return (
-        <>
-            <p>Das Board wurde mit diesen Settings erstellt: Grid: {settings.grid.cols}x{settings.grid.rows} {settings.difficulty} {settings.timer}</p>
-        </>
+        <div>
+            <h2>Breath of the Wild - Lockout</h2>
+            <BingoGrid />
+            <Timer
+                timerSettings={settings.timer}
+            />
+        </div>
     )
 }
