@@ -19,7 +19,7 @@ export default function Board({ settings }: BoardProps) {
                 gridSize={settings.grid}
             />
             <Timer
-                mode={settings.timer}
+                timerSettings={settings.timer}
             />
         </div>
     )

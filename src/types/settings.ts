@@ -9,8 +9,13 @@ export type DifficultySettings =
     | "hard"
 
 export type TimerSettings =
-    | "count_up"
-    | "count_down"
+    | {
+        variant: "count_up"
+      }
+    | {
+        variant: "count_down",
+        time: number
+    }
 
 export type GameSettings = {
     grid: GridSettings

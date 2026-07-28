@@ -4,10 +4,10 @@ import type { TimerSettings } from "../types/settings"
 import styles from "../css/Timer.module.css"
 
 type TimerProps = {
-    mode: TimerSettings
+    timerSettings: TimerSettings
 }
 
-export default function Timer({ mode }: TimerProps) {
+export default function Timer({ timerSettings }: TimerProps) {
     const [time, setTime] = useState(0)
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export default function Timer({ mode }: TimerProps) {
 
     const startTime = 3600000
     const lapsedTime = Math.max(
-        mode === "count_down"
+        timerSettings.variant === "count_down"
             ? startTime - time
             : time,
         0

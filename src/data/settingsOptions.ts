@@ -49,11 +49,14 @@ export const settingsOptions: SettingsOptions = {
         title: "Timer",
         options: [{
             label: "Hochzählen",
-            value: "count_up"
+            value: { variant: "count_up" }
         },
         {
             label: "Runterzählen",
-            value: "count_down"
+            value: {
+                variant: "count_down",
+                time: 1
+            }
         }]
     }
 }

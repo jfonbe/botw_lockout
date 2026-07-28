@@ -1,9 +1,11 @@
 import Dropdown from "./Dropdown"
 import Button from "./Button"
+import TimerDropdown from "./TimerDropdown"
+
 import type { SettingsOptions, DropdownHandlerProps } from "../types/components"
+import type { GameSettings } from "../types/settings"
 
 import styles from "../css/InputContainer.module.css"
-import type { GameSettings } from "../types/settings"
 
 type InputContainerProps = {
     settingsOptions: SettingsOptions,
@@ -30,12 +32,11 @@ export default function InputContainer({settingsOptions, dropdownHandlers, gener
                     getValueKey={(option) => option}
                     variant="difficulty"
                 />
-                <Dropdown
+                <TimerDropdown
                     settings={settingsOptions.timer}
                     dropdownHandler={dropdownHandlers.timerSettingsHandler}
                     currentSetting={currentSettings.timer}
-                    getValueKey={(option) => option}
-                    variant="timer"
+                    getValueKey={(option) => option.variant}
                 />
             </div>
             <Button
