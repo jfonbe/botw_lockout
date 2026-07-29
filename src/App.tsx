@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useDebugValue, useState } from 'react'
 import './App.css'
 
 import Board from './components/Board'
@@ -7,7 +7,7 @@ import Settings from './components/Settings'
 import type { GridSettings, DifficultySettings, TimerSettings, GameSettings } from "./types/settings"
 
 export default function App() {
-  const [isGenerated, setIsGenerated] = useState(false)
+  const [isGameStarted, setIsGameStarted] = useState(false)
 
   const [gameSettings, setGameSettings] = useState<GameSettings>({
     grid: {
@@ -21,25 +21,26 @@ export default function App() {
     }
   })
 
-  const gridSettingsHandler = (value: GridSettings) => {
+  const updateSetting = <K extends keyof GameSettings>(
+    key: K,
+    value: GameSettings[K]
+  ) => {
     setGameSettings(prev => ({
       ...prev,
-      grid: value
+      [key]: value
     }))
+  }
+
+  const gridSettingsHandler = (value: GridSettings) => {
+    updateSetting("grid", value)
   }
 
   const difficultySettingsHandler = (value: DifficultySettings) => {
-    setGameSettings(prev => ({
-      ...prev,
-      difficulty: value
-    }))
+    updateSetting("difficulty", value)
   }
 
   const timerSettingsHandler = (value: TimerSettings) => {
-    setGameSettings(prev => ({
-      ...prev,
-      timer: value
-    }))
+    updateSetting("timer", value)
   }
 
   const dropdownHandlers = {
@@ -48,14 +49,13 @@ export default function App() {
     timerSettingsHandler
   }
 
-  const generateBoardHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-    setIsGenerated(true)
+  const generateBoardHandler = () => {
+    setIsGameStarted(true)
   }
 
   return (
     <>
-      {isGenerated ? (
+      {isGameStarted ? (
         <Board settings={gameSettings}/>
       ) : (
         <Settings
