@@ -10,7 +10,6 @@
   }
 }
 
-
 .dropdown {
     display: flex;
     flex-direction: column;
@@ -115,6 +114,9 @@
     width: calc((100% - 20px) / 2);
 }
 
+.buttonContainer {
+    width: 100%;
+}
 
 @media (max-width: 768px) {
     .dropdown {

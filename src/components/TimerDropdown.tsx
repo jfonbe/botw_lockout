@@ -12,11 +12,10 @@ type TimerDropdownProps = {
 }
 
 export default function TimerDropdown ({ settings, dropdownHandler, currentSetting, getValueKey }: TimerDropdownProps) {
-        const [isOpen, setIsOpen] = useState(false)
-        const dropdownRef = useRef<HTMLDivElement>(null)
 
-        console.log(currentSetting)
-        console.log(settings)
+        const [isOpen, setIsOpen] = useState(false)
+        const [isVisible, setIsVisible] = useState(false)
+        const dropdownRef = useRef<HTMLDivElement>(null)
 
         useEffect(() => {
             function handleClickOutside(event: MouseEvent) {
@@ -52,27 +51,51 @@ export default function TimerDropdown ({ settings, dropdownHandler, currentSetti
                 onClick={clickHanlder}
                 className={styles.button}
             >
-                {currentOption?.label ?? settings.title}
+                {currentOption?.label ?? settings.title} {currentSetting.variant === "count_down"
+                    ? `${currentSetting.time}h`
+                    : ""}
             </button>
 
             {isOpen && (
-                <div>
+                <div
+                    className={styles.dropdownMenu}
+                >
                     <div
                         onClick={() => {
                             dropdownHandler(settings.options[0].value)
+                            setIsOpen(false)
+                            setIsVisible(false)
                         }}
-                        className={`${styles.dropdownOption}}`}
+                        className={`${styles.dropdownOption} ${styles.timer}`}
                     >
                         {settings.options[0].label}
                     </div>
                     <div
                         onClick={() => {
-                            dropdownHandler(settings.options[1].value)
+                            setIsVisible(true)
                         }}
-                        className={`${styles.dropdownOption}}`}
+                        className={`${styles.dropdownOption} ${styles.timer}`}
                     >
                         {settings.options[1].label}
                     </div>
+                    {isVisible && (
+                        <div
+                            className={styles.buttonContainer}
+                        >
+                            {settings.options.slice(1).map((option => (
+                                <div
+                                    key={getValueKey(option.value)}
+                                    onClick={() => {
+                                        dropdownHandler(option.value)
+                                        setIsOpen(false)
+                                    }}
+                                    className={`${styles.dropdownOption} ${styles.timeButton}`}
+                                >
+                                    {option.value.time}h
+                                </div>
+                            )))}
+                        </div>
+                    )}
                 </div>
             )}
         </div>

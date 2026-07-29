@@ -47,16 +47,42 @@ export const settingsOptions: SettingsOptions = {
     },
     timer: {
         title: "Timer",
-        options: [{
-            label: "Hochzählen",
-            value: { variant: "count_up" }
-        },
-        {
-            label: "Runterzählen",
-            value: {
-                variant: "count_down",
-                time: 1
+        options: [
+            {
+                label: "Hochzählen",
+                value: {
+                    variant: "count_up",
+                    time: 0
+                }
+            },
+            {
+                label: "Runterzählen",
+                value: {
+                    variant: "count_down",
+                    time: 1
+                }
+            },
+            {
+                label: "Runterzählen",
+                value: {
+                    variant: "count_down",
+                    time: 2
+                }
+            },
+            {
+                label: "Runterzählen",
+                value: {
+                    variant: "count_down",
+                    time: 3
+                }
+            },
+            {
+                label: "Runterzählen",
+                value: {
+                    variant: "count_down",
+                    time: 4
+                }
             }
-        }]
+        ]
     }
 }

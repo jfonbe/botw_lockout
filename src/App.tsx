@@ -15,7 +15,10 @@ export default function App() {
       cols: 5
     },
     difficulty: "medium",
-    timer: { variant: "count_up" }
+    timer: {
+      variant: "count_up",
+      time: 0
+    }
   })
 
   const gridSettingsHandler = (value: GridSettings) => {

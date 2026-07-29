@@ -20,7 +20,7 @@ export default function Timer({ timerSettings }: TimerProps) {
         return () => clearInterval(interval)
     }, [])
 
-    const startTime = 3600000
+    const startTime = 3600000 * timerSettings.time
     const lapsedTime = Math.max(
         timerSettings.variant === "count_down"
             ? startTime - time

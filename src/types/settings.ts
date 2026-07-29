@@ -10,7 +10,8 @@ export type DifficultySettings =
 
 export type TimerSettings =
     | {
-        variant: "count_up"
+        variant: "count_up",
+        time: number
       }
     | {
         variant: "count_down",
