@@ -6,20 +6,20 @@ import Timer from "./Timer"
 import styles from "../css/Board.module.css"
 
 type BoardProps = {
-    settings: GameSettings
+    gameSettings: GameSettings
 }
 
-export default function Board({ settings }: BoardProps) {
+export default function Board({ gameSettings }: BoardProps) {
     return (
         <div
             className={styles.board}
         >
             <h2 className={styles.heading}>Breath of the Wild - Lockout</h2>
             <BingoGrid
-                gridSize={settings.grid}
+                gridSize={gameSettings.grid}
             />
             <Timer
-                timerSettings={settings.timer}
+                timerSettings={gameSettings.timer}
             />
         </div>
     )

@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"
-import type { DropdownSettings } from "../types/components"
+import type { DropdownOptions } from "../types/components"
 import styles from "../css/Dropdown.module.css"
 
 type DropdownProps<T> = {
-    settings: DropdownSettings<T>,
+    inputOptions: DropdownOptions<T>,
     dropdownHandler: (value: T) => void,
-    currentSetting: T,
+    currentInput: T,
     getValueKey: (value: T) => React.Key
     variant:
         | "grid"
@@ -13,9 +13,11 @@ type DropdownProps<T> = {
         | "timer"
 }
 
-export default function Dropdown<T> ({settings, dropdownHandler, currentSetting, getValueKey, variant}: DropdownProps<T>) {
+export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInput, getValueKey, variant}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
+
+    console.log(currentInput)
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -31,13 +33,12 @@ export default function Dropdown<T> ({settings, dropdownHandler, currentSetting,
         }
     }, [])
 
-    const clickHanlder = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault()
+    const clickHanlder = () => {
         setIsOpen(!isOpen)
     }
 
-    const currentOption = settings.options.find(
-        option => getValueKey(option.value) === getValueKey(currentSetting)
+    const currentOption = inputOptions.options.find(
+        option => getValueKey(option.value) === getValueKey(currentInput)
     )
 
     return (
@@ -46,19 +47,19 @@ export default function Dropdown<T> ({settings, dropdownHandler, currentSetting,
             className={styles.dropdown}>
             <label
                 className={styles.label}
-            >{settings.title}</label>
+            >{inputOptions.title}</label>
             <button
                 onClick={clickHanlder}
                 className={styles.button}
             >
-                {currentOption?.label ?? settings.title}
+                {currentOption?.label ?? inputOptions.title}
             </button>
 
             {isOpen && (
                 <div
                     className={styles.dropdownMenu}
                 >
-                    {settings.options.map((option => (
+                    {inputOptions.options.map((option => (
                         <div
                             key={getValueKey(option.value)}
                             onClick={() => {

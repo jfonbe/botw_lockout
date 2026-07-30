@@ -1,6 +1,6 @@
-import type { SettingsOptions } from "../types/components"
+import type { InputOptions } from "../types/components"
 
-export const settingsOptions: SettingsOptions = {
+export const settingsOptions: InputOptions = {
     grid: {
         title: "Grid",
         options: [
@@ -50,38 +50,11 @@ export const settingsOptions: SettingsOptions = {
         options: [
             {
                 label: "Hochzählen",
-                value: {
-                    variant: "count_up",
-                    time: 0
-                }
+                value: "count_up"
             },
             {
                 label: "Runterzählen",
-                value: {
-                    variant: "count_down",
-                    time: 1
-                }
-            },
-            {
-                label: "Runterzählen",
-                value: {
-                    variant: "count_down",
-                    time: 2
-                }
-            },
-            {
-                label: "Runterzählen",
-                value: {
-                    variant: "count_down",
-                    time: 3
-                }
-            },
-            {
-                label: "Runterzählen",
-                value: {
-                    variant: "count_down",
-                    time: 4
-                }
+                value: "count_down"
             }
         ]
     }

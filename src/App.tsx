@@ -1,52 +1,51 @@
-import { useDebugValue, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 import Board from './components/Board'
 import Settings from './components/Settings'
 
-import type { GridSettings, DifficultySettings, TimerSettings, GameSettings } from "./types/settings"
+import type { GridInput, DifficultyInput, TimerInput, Inputs } from "./types/settings"
 
 export default function App() {
   const [isGameStarted, setIsGameStarted] = useState(false)
 
-  const [gameSettings, setGameSettings] = useState<GameSettings>({
+  const [inputs, setInputs] = useState<Inputs>({
     grid: {
       rows: 5,
       cols: 5
     },
     difficulty: "medium",
     timer: {
-      variant: "count_up",
-      time: 0
+      variant: "count_up"
     }
   })
 
-  const updateSetting = <K extends keyof GameSettings>(
+  const updateInputs = <K extends keyof Inputs>(
     key: K,
-    value: GameSettings[K]
+    value: Inputs[K]
   ) => {
-    setGameSettings(prev => ({
+    setInputs(prev => ({
       ...prev,
       [key]: value
     }))
   }
 
-  const gridSettingsHandler = (value: GridSettings) => {
-    updateSetting("grid", value)
+  const gridInputHandler = (value: GridInput) => {
+    updateInputs("grid", value)
   }
 
-  const difficultySettingsHandler = (value: DifficultySettings) => {
-    updateSetting("difficulty", value)
+  const difficultyInputHandler = (value: DifficultyInput) => {
+    updateInputs("difficulty", value)
   }
 
-  const timerSettingsHandler = (value: TimerSettings) => {
-    updateSetting("timer", value)
+  const timerInputHandler = (value: TimerInput) => {
+    updateInputs("timer", value)
   }
 
   const dropdownHandlers = {
-    gridSettingsHandler,
-    difficultySettingsHandler,
-    timerSettingsHandler
+    gridInputHandler,
+    difficultyInputHandler,
+    timerInputHandler
   }
 
   const generateBoardHandler = () => {
@@ -56,12 +55,12 @@ export default function App() {
   return (
     <>
       {isGameStarted ? (
-        <Board settings={gameSettings}/>
+        <Board gameSettings={gameSettings}/>
       ) : (
         <Settings
           generateBoardHandler={generateBoardHandler}
           dropdownHandlers={dropdownHandlers}
-          gameSettings={gameSettings}
+          inputs={inputs}
         />
       )}
     </>
