@@ -8,6 +8,8 @@ export type DifficultyInput =
     | "medium"
     | "hard"
 
+export type TimerVariant = "count_up" | "count_down"
+
 export type TimerInput =
     | {
         variant: "count_up",

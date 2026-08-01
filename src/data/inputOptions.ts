@@ -1,6 +1,6 @@
 import type { InputOptions } from "../types/components"
 
-export const settingsOptions: InputOptions = {
+export const inputOptions: InputOptions = {
     grid: {
         title: "Grid",
         options: [
@@ -50,11 +50,11 @@ export const settingsOptions: InputOptions = {
         options: [
             {
                 label: "Hochzählen",
-                value: "count_up"
+                value: { variant: "count_up" }
             },
             {
                 label: "Runterzählen",
-                value: "count_down"
+                value: { variant: "count_down"}
             }
         ]
     }

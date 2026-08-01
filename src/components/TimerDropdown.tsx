@@ -1,103 +1,55 @@
-import { useState, useRef, useEffect} from "react"
-import type { TimerSettings } from "../types/settings"
-import type { DropdownSettings } from "../types/components"
+import { useState } from "react"
+import Dropdown from "./Dropdown"
 
-import styles from "../css/Dropdown.module.css"
+import type { TimerInput } from "../types/settings"
+import type { DropdownOptions } from "../types/components"
+
+import { timerInputOptions } from "../data/timerInputOptions"
 
 type TimerDropdownProps = {
-    settings: DropdownSettings<TimerSettings>,
-    dropdownHandler: (value: TimerSettings) => void,
-    currentSetting: TimerSettings,
-    getValueKey: (value: TimerSettings) => React.Key
+    inputOptions: DropdownOptions<TimerInput>,
+    dropdownHandler: (value: TimerInput) => void,
+    currentInput: TimerInput,
+    getValueKey: (value: TimerInput) => React.Key,
+        variant:
+        | "grid"
+        | "difficulty"
+        | "timer",
 }
 
-export default function TimerDropdown ({ settings, dropdownHandler, currentSetting, getValueKey }: TimerDropdownProps) {
-
-        const [isOpen, setIsOpen] = useState(false)
-        const [isVisible, setIsVisible] = useState(false)
-        const dropdownRef = useRef<HTMLDivElement>(null)
-
-        useEffect(() => {
-            function handleClickOutside(event: MouseEvent) {
-                if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                    setIsOpen(false)
-                }
-            }
-
-            document.addEventListener("mousedown", handleClickOutside)
-
-            return () => {
-                document.removeEventListener("mousedown", handleClickOutside)
-            }
-        }, [])
-
-        const clickHanlder = (event: React.MouseEvent<HTMLButtonElement>) => {
-            event.preventDefault()
-            setIsOpen(!isOpen)
-        }
-
-        const currentOption = settings.options.find(
-            option => getValueKey(option.value) === getValueKey(currentSetting)
-        )
+export default function TimerDropdown ({ inputOptions, dropdownHandler, currentInput, getValueKey, variant, closeDropdownHandler }: TimerDropdownProps) {
+    const [timerVariant, setTimerVariant] = useState<TimerInput>({ variant: "count_up" })
 
     return (
-        <div
-            ref={dropdownRef}
-            className={styles.dropdown}>
-            <label
-                className={styles.label}
-            >{settings.title}</label>
-            <button
-                onClick={clickHanlder}
-                className={styles.button}
-            >
-                {currentOption?.label ?? settings.title} {currentSetting.variant === "count_down"
-                    ? `${currentSetting.time}h`
-                    : ""}
-            </button>
+        <>
+            <Dropdown<TimerInput>
+                inputOptions={inputOptions}
+                dropdownHandler={setTimerVariant}
+                currentInput={currentInput}
+                getValueKey={getValueKey}
+                variant={variant}
+                closeOnSelect={false}
+            />
+            {timerVariant.variant === "count_down" && (
+                <>
+                    {timerInputOptions.map((option) => {
+                        const newVal: TimerInput = {
+                            variant: "count_down",
+                            time: option.value
+                        }
+                        return (
+                            <button
+                                onClick={() => {
+                                    dropdownHandler(newVal)
 
-            {isOpen && (
-                <div
-                    className={styles.dropdownMenu}
-                >
-                    <div
-                        onClick={() => {
-                            dropdownHandler(settings.options[0].value)
-                            setIsOpen(false)
-                            setIsVisible(false)
-                        }}
-                        className={`${styles.dropdownOption} ${styles.timer}`}
-                    >
-                        {settings.options[0].label}
-                    </div>
-                    <div
-                        onClick={() => {
-                            setIsVisible(true)
-                        }}
-                        className={`${styles.dropdownOption} ${styles.timer}`}
-                    >
-                        {settings.options[1].label}
-                    </div>
-                    {isVisible && (
-                        <div
-                            className={styles.buttonContainer}
-                        >
-                            {settings.options.slice(1).map((option => (
-                                <div
-                                    key={getValueKey(option.value)}
-                                    onClick={() => {
-                                        dropdownHandler(option.value)
-                                        setIsOpen(false)
-                                    }}
-                                    className={`${styles.dropdownOption} ${styles.timeButton}`}
-                                >
-                                    {option.value.time}h
-                                </div>
-                            )))}
-                        </div>
-                    )}
-                </div>
+                                }}
+                            >
+                                {option.label}
+                            </button>
+                        )
+                    })}
+                </>
             )}
-        </div>
+        </>
     )
 }

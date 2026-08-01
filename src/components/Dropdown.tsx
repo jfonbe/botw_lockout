@@ -10,14 +10,13 @@ type DropdownProps<T> = {
     variant:
         | "grid"
         | "difficulty"
-        | "timer"
+        | "timer",
+    closeOnSelect: boolean
 }
 
-export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInput, getValueKey, variant}: DropdownProps<T>) {
+export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInput, getValueKey, variant, closeOnSelect}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
-
-    console.log(currentInput)
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -33,7 +32,7 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
         }
     }, [])
 
-    const clickHanlder = () => {
+    const clickHandler = () => {
         setIsOpen(!isOpen)
     }
 
@@ -49,7 +48,7 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
                 className={styles.label}
             >{inputOptions.title}</label>
             <button
-                onClick={clickHanlder}
+                onClick={clickHandler}
                 className={styles.button}
             >
                 {currentOption?.label ?? inputOptions.title}
@@ -64,7 +63,9 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
                             key={getValueKey(option.value)}
                             onClick={() => {
                                 dropdownHandler(option.value)
-                                setIsOpen(false)
+                                if (closeOnSelect) {
+                                    setIsOpen(false)
+                                }
                             }}
                             className={`${styles.dropdownOption} ${styles[variant]}`}
                         >

@@ -10,6 +10,8 @@ export type Options<T> = {
     value: T
 }
 
+export type TimerInputOptions<T> = Options<T>[]
+
 export type DropdownOptions<T> = {
     title: string,
     options: Options<T>[]

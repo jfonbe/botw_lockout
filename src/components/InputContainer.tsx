@@ -5,6 +5,7 @@ import type { InputOptions, DropdownHandlerProps } from "../types/components"
 import type { Inputs } from "../types/settings"
 
 import styles from "../css/InputContainer.module.css"
+import TimerDropdown from "./TimerDropdown"
 
 type InputContainerProps = {
     inputOptions: InputOptions,
@@ -23,6 +24,7 @@ export default function InputContainer({ inputOptions, dropdownHandlers, generat
                     currentInput={currentInputs.grid}
                     getValueKey={(option) => `${option.rows}-${option.cols}`}
                     variant="grid"
+                    closeOnSelect={true}
                 />
                 <Dropdown
                     inputOptions={inputOptions.difficulty}
@@ -30,8 +32,9 @@ export default function InputContainer({ inputOptions, dropdownHandlers, generat
                     currentInput={currentInputs.difficulty}
                     getValueKey={(option) => option}
                     variant="difficulty"
+                    closeOnSelect={true}
                 />
-                <Dropdown
+                <TimerDropdown
                     inputOptions={inputOptions.timer}
                     dropdownHandler={dropdownHandlers.timerInputHandler}
                     currentInput={currentInputs.timer}
