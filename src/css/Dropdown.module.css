@@ -81,40 +81,6 @@
     animation: slideIn 200ms ease;
 }
 
-.dropdownButtons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 40px;
-    margin: 5px;
-
-    background-color: var(--bg-color-2);
-    color: var(--fg-color-2);
-    border: 0;
-    border-radius: 6px;
-
-    transition: transform 0.2s ease;
-}
-
-.dropdownButtons:hover {
-    transform: translateY(-2px);
-    color: var(--green-color);
-    cursor: pointer;
-}
-
-.grid {
-    width: calc((100% - 30px) / 3);
-}
-
-.difficulty {
-    width: calc((100% - 30px) / 3);
-}
-
-.timer {
-    width: calc((100% - 20px) / 2);
-}
-
 .timeDropdownMenu {
     display: flex;
     justify-content: center;

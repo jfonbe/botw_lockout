@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import type { DropdownOptions } from "../types/components"
 import styles from "../css/Dropdown.module.css"
+import DropdownButton from "./DropdownButton"
 
 type DropdownProps<T> = {
     inputOptions: DropdownOptions<T>,
@@ -58,16 +59,15 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
                     className={styles.dropdownMenu}
                 >
                     {inputOptions.options.map((option => (
-                        <div
+                        <DropdownButton
+                            value={option.value}
+                            label={option.label}
+                            dropdownHandler={dropdownHandler}
+                            variant={variant}
+                            setIsOpen={setIsOpen}
+                            closeOnSelect={true}
                             key={getValueKey(option.value)}
-                            onClick={() => {
-                                dropdownHandler(option.value)
-                                setIsOpen(false)
-                            }}
-                            className={`${styles.dropdownButtons} ${styles[variant]}`}
-                        >
-                            {option.label}
-                        </div>
+                        />
                     )))}
                 </div>
             )}

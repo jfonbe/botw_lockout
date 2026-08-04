@@ -13,6 +13,7 @@ type TimerDropdownProps = {
 }
 
 import styles from "../css/Dropdown.module.css"
+import DropdownButton from "./DropdownButton"
 
 export default function TimerDropdown ({ inputOptions, dropdownHandler, currentInput, getValueKey }: TimerDropdownProps) {
     const [isOpen, setIsOpen] = useState(false)
@@ -59,18 +60,15 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                     className={styles.dropdownMenu}
                 >
                     {inputOptions.options.map((option => (
-                        <div
-                            key={getValueKey(option.value)}
-                            className={`${styles.dropdownButtons} ${styles.timer}`}
-                            onClick={() => {
-                                dropdownHandler(option.value)
-                                if (option.value.variant === "count_up") {
-                                    setIsOpen(false)
-                                }
-                            }}
-                        >
-                            {option.label}
-                        </div>
+                        <DropdownButton
+                            value={option.value}
+                            label={option.label}
+                            dropdownHandler={dropdownHandler}
+                            variant={"timer"}
+                            setIsOpen={setIsOpen}
+                            closeOnSelect={false}
+                            key={option.value}
+                        />
                     )))}
                     {currentInput.variant === "count_down" && (
                         <div
@@ -82,16 +80,15 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                                     time: option.value
                                 }
                                 return (
-                                    <button
+                                    <DropdownButton
+                                        value={newVal}
+                                        label={option.label}
+                                        dropdownHandler={dropdownHandler}
+                                        variant={"timer"}
+                                        setIsOpen={setIsOpen}
+                                        closeOnSelect={true}
                                         key={option.value}
-                                        className={`${styles.dropdownButtons} ${styles.time}`}
-                                        onClick={() => {
-                                            dropdownHandler(newVal)
-                                            setIsOpen(false)
-                                        }}
-                                    >
-                                        {option.label}
-                                    </button>
+                                    />
                                 )
                             })}
                         </div>
