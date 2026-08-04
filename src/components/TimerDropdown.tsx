@@ -83,6 +83,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                                 }
                                 return (
                                     <button
+                                        key={option.value}
                                         className={`${styles.dropdownOption} ${styles.timerButton}`}
                                         onClick={() => {
                                             dropdownHandler(newVal)
