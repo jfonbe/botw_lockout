@@ -48,7 +48,7 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
             >{inputOptions.title}</label>
             <button
                 onClick={clickHandler}
-                className={styles.button}
+                className={styles.dropdownInput}
             >
                 {currentOption?.label ?? inputOptions.title}
             </button>
@@ -64,7 +64,7 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
                                 dropdownHandler(option.value)
                                 setIsOpen(false)
                             }}
-                            className={`${styles.dropdownOption} ${styles[variant]}`}
+                            className={`${styles.dropdownButtons} ${styles[variant]}`}
                         >
                             {option.label}
                         </div>

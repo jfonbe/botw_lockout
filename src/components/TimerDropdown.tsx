@@ -49,7 +49,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
             >{inputOptions.title}</label>
             <button
                 onClick={clickHandler}
-                className={styles.button}
+                className={styles.dropdownInput}
             >
                 {currentOption?.label ?? inputOptions.title}
             </button>
@@ -61,7 +61,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                     {inputOptions.options.map((option => (
                         <div
                             key={getValueKey(option.value)}
-                            className={`${styles.dropdownOption} ${styles.timer}`}
+                            className={`${styles.dropdownButtons} ${styles.timer}`}
                             onClick={() => {
                                 dropdownHandler(option.value)
                                 if (option.value.variant === "count_up") {
@@ -74,7 +74,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                     )))}
                     {currentInput.variant === "count_down" && (
                         <div
-                            className={styles.timerDropdownMenu}
+                            className={styles.timeDropdownMenu}
                         >
                             {timerInputOptions.map((option) => {
                                 const newVal: TimerInput = {
@@ -84,7 +84,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                                 return (
                                     <button
                                         key={option.value}
-                                        className={`${styles.dropdownOption} ${styles.timerButton}`}
+                                        className={`${styles.dropdownButtons} ${styles.time}`}
                                         onClick={() => {
                                             dropdownHandler(newVal)
                                             setIsOpen(false)

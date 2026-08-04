@@ -30,12 +30,17 @@
     margin-right: 0px;
 }
 
-
 .dropdown:first-child {
     margin-left: 0px;
 }
 
-.button {
+.label {
+    margin-bottom: 6px;
+    padding-left: 8px;
+    border-left: 3px solid var(--bg-color-1);
+}
+
+.dropdownInput {
     height: 40px;
 
     background-color: var(--bg-color-1);
@@ -50,15 +55,9 @@
     transition: border-color 0.3s;
 }
 
-.button:hover {
+.dropdownInput:hover {
     cursor: pointer;
     border: 1px solid var(--fg-color-2);
-}
-
-.label {
-    margin-bottom: 6px;
-    padding-left: 8px;
-    border-left: 3px solid var(--bg-color-1);
 }
 
 .dropdownMenu {
@@ -82,7 +81,7 @@
     animation: slideIn 200ms ease;
 }
 
-.dropdownOption {
+.dropdownButtons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,7 +97,7 @@
     transition: transform 0.2s ease;
 }
 
-.dropdownOption:hover {
+.dropdownButtons:hover {
     transform: translateY(-2px);
     color: var(--green-color);
     cursor: pointer;
@@ -116,18 +115,13 @@
     width: calc((100% - 20px) / 2);
 }
 
-.buttonContainer {
-    width: 100%;
-}
-
-.timerDropdownMenu {
+.timeDropdownMenu {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 10px;
 }
 
-.timerButton {
+.time {
     width: calc((100% - 40px) / 4);
 }
 
