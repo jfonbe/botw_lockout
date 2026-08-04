@@ -91,6 +91,8 @@
     margin: 5px;
 
     background-color: var(--bg-color-2);
+    color: var(--fg-color-2);
+    border: 0;
     border-radius: 6px;
 
     transition: transform 0.2s ease;
@@ -116,6 +118,17 @@
 
 .buttonContainer {
     width: 100%;
+}
+
+.timerDropdownMenu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.timerButton {
+    width: calc((100% - 40px) / 4);
 }
 
 @media (max-width: 768px) {

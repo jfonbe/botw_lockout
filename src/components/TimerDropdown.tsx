@@ -56,21 +56,26 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
 
             {isOpen && (
                 <div
+                    className={styles.dropdownMenu}
                 >
                     {inputOptions.options.map((option => (
                         <div
                             key={getValueKey(option.value)}
+                            className={`${styles.dropdownOption} ${styles.timer}`}
                             onClick={() => {
                                 dropdownHandler(option.value)
-                                if(option.value === )
-                                setIsOpen(false)
+                                if (option.value.variant === "count_up") {
+                                    setIsOpen(false)
+                                }
                             }}
                         >
                             {option.label}
                         </div>
                     )))}
                     {currentInput.variant === "count_down" && (
-                        <div>
+                        <div
+                            className={styles.timerDropdownMenu}
+                        >
                             {timerInputOptions.map((option) => {
                                 const newVal: TimerInput = {
                                     variant: "count_down",
@@ -78,8 +83,10 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                                 }
                                 return (
                                     <button
+                                        className={`${styles.dropdownOption} ${styles.timerButton}`}
                                         onClick={() => {
                                             dropdownHandler(newVal)
+                                            setIsOpen(false)
                                         }}
                                     >
                                         {option.label}
