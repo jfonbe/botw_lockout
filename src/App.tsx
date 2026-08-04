@@ -4,10 +4,10 @@ import './App.css'
 import Board from './components/Board'
 import Settings from './components/Settings'
 
-import type { GridInput, DifficultyInput, TimerInput, Inputs } from "./types/settings"
+import type { GridInput, DifficultyInput, TimerInput, Inputs, GameSettings, TimerSetting } from "./types/settings"
 
 export default function App() {
-  const [isGameStarted, setIsGameStarted] = useState(false)
+  const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
 
   const [inputs, setInputs] = useState<Inputs>({
     grid: {
@@ -52,10 +52,30 @@ export default function App() {
     setIsGameStarted(true)
   }
 
+  const createGameSettings = (inputs: Inputs) => {
+    let timerSetting: TimerSetting
+
+    if(inputs.timer.variant === "count_down") {
+      timerSetting = inputs.timer.time === undefined ?
+        { variant: inputs.timer.variant, time: 1 } :
+        { variant: inputs.timer.variant, time: inputs.timer.time }
+    } else {
+      timerSetting = inputs.timer
+    }
+
+    const newSettings: GameSettings = {
+      grid: inputs.grid,
+      difficulty: inputs.difficulty,
+      timer: timerSetting
+    }
+
+    return newSettings
+  }
+
   return (
     <>
       {isGameStarted ? (
-        <Board gameSettings={gameSettings}/>
+        <Board gameSettings={createGameSettings(inputs)}/>
       ) : (
         <Settings
           generateBoardHandler={generateBoardHandler}
