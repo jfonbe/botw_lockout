@@ -1,5 +1,4 @@
-import { useState } from "react"
-import Dropdown from "./Dropdown"
+import { useState, useRef, useEffect } from "react"
 
 import type { TimerInput } from "../types/settings"
 import type { DropdownOptions } from "../types/components"
@@ -11,45 +10,86 @@ type TimerDropdownProps = {
     dropdownHandler: (value: TimerInput) => void,
     currentInput: TimerInput,
     getValueKey: (value: TimerInput) => React.Key,
-        variant:
-        | "grid"
-        | "difficulty"
-        | "timer",
 }
 
-export default function TimerDropdown ({ inputOptions, dropdownHandler, currentInput, getValueKey, variant, closeDropdownHandler }: TimerDropdownProps) {
-    const [timerVariant, setTimerVariant] = useState<TimerInput>({ variant: "count_up" })
+import styles from "../css/Dropdown.module.css"
+
+export default function TimerDropdown ({ inputOptions, dropdownHandler, currentInput, getValueKey }: TimerDropdownProps) {
+    const [isOpen, setIsOpen] = useState(false)
+    const dropdownRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
+
+    const clickHandler = () => {
+        setIsOpen(!isOpen)
+    }
+
+    const currentOption = inputOptions.options.find(
+        option => getValueKey(option.value) === getValueKey(currentInput)
+    )
 
     return (
-        <>
-            <Dropdown<TimerInput>
-                inputOptions={inputOptions}
-                dropdownHandler={setTimerVariant}
-                currentInput={currentInput}
-                getValueKey={getValueKey}
-                variant={variant}
-                closeOnSelect={false}
-            />
-            {timerVariant.variant === "count_down" && (
-                <>
-                    {timerInputOptions.map((option) => {
-                        const newVal: TimerInput = {
-                            variant: "count_down",
-                            time: option.value
-                        }
-                        return (
-                            <button
-                                onClick={() => {
-                                    dropdownHandler(newVal)
+        <div
+            ref={dropdownRef}
+            className={styles.dropdown}>
+            <label
+                className={styles.label}
+            >{inputOptions.title}</label>
+            <button
+                onClick={clickHandler}
+                className={styles.button}
+            >
+                {currentOption?.label ?? inputOptions.title}
+            </button>
 
-                                }}
-                            >
-                                {option.label}
-                            </button>
-                        )
-                    })}
-                </>
+            {isOpen && (
+                <div
+                >
+                    {inputOptions.options.map((option => (
+                        <div
+                            key={getValueKey(option.value)}
+                            onClick={() => {
+                                dropdownHandler(option.value)
+                                if(option.value === )
+                                setIsOpen(false)
+                            }}
+                        >
+                            {option.label}
+                        </div>
+                    )))}
+                    {currentInput.variant === "count_down" && (
+                        <div>
+                            {timerInputOptions.map((option) => {
+                                const newVal: TimerInput = {
+                                    variant: "count_down",
+                                    time: option.value
+                                }
+                                return (
+                                    <button
+                                        onClick={() => {
+                                            dropdownHandler(newVal)
+                                        }}
+                                    >
+                                        {option.label}
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    )}
+                </div>
             )}
-        </>
+        </div>
     )
 }

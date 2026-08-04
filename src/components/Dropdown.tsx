@@ -11,10 +11,9 @@ type DropdownProps<T> = {
         | "grid"
         | "difficulty"
         | "timer",
-    closeOnSelect: boolean
 }
 
-export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInput, getValueKey, variant, closeOnSelect}: DropdownProps<T>) {
+export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInput, getValueKey, variant}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -63,9 +62,7 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
                             key={getValueKey(option.value)}
                             onClick={() => {
                                 dropdownHandler(option.value)
-                                if (closeOnSelect) {
-                                    setIsOpen(false)
-                                }
+                                setIsOpen(false)
                             }}
                             className={`${styles.dropdownOption} ${styles[variant]}`}
                         >

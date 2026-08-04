@@ -24,7 +24,6 @@ export default function InputContainer({ inputOptions, dropdownHandlers, generat
                     currentInput={currentInputs.grid}
                     getValueKey={(option) => `${option.rows}-${option.cols}`}
                     variant="grid"
-                    closeOnSelect={true}
                 />
                 <Dropdown
                     inputOptions={inputOptions.difficulty}
@@ -32,14 +31,12 @@ export default function InputContainer({ inputOptions, dropdownHandlers, generat
                     currentInput={currentInputs.difficulty}
                     getValueKey={(option) => option}
                     variant="difficulty"
-                    closeOnSelect={true}
                 />
                 <TimerDropdown
                     inputOptions={inputOptions.timer}
                     dropdownHandler={dropdownHandlers.timerInputHandler}
                     currentInput={currentInputs.timer}
                     getValueKey={(option) => option.variant}
-                    variant="timer"
                 />
             </div>
             <Button
