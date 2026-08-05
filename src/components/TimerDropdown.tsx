@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 
 import type { TimerInput } from "../types/settings"
-import type { DropdownOptions } from "../types/components"
+import type { DropdownOptions, Options } from "../types/components"
 
 import { timerInputOptions } from "../data/timerInputOptions"
 
@@ -41,6 +41,17 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
         option => getValueKey(option.value) === getValueKey(currentInput)
     )
 
+    const showTimerLabel = (input: TimerInput, option: typeof currentOption) => {
+        if (input.variant === "count_down") {
+            return input.time ?
+                `${option?.label} (${input.time}H)` :
+                `${option?.label}`
+        }
+        else {
+            return `${option?.label}`
+        }
+    }
+
     return (
         <div
             ref={dropdownRef}
@@ -52,7 +63,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                 onClick={clickHandler}
                 className={styles.dropdownInput}
             >
-                {currentOption?.label ?? inputOptions.title}
+                {showTimerLabel(currentInput, currentOption)}
             </button>
 
             {isOpen && (
@@ -67,7 +78,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                             variant={"timer"}
                             setIsOpen={setIsOpen}
                             closeOnSelect={false}
-                            key={option.value}
+                            key={option.label}
                         />
                     )))}
                     {currentInput.variant === "count_down" && (
