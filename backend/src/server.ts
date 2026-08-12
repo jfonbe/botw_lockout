@@ -1,6 +1,6 @@
 import express from "express"
 
-import data from "./data/data.js"
+import data from "./data/tasks.js"
 
 const app = express()
 const PORT = 1234
