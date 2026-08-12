@@ -4,12 +4,14 @@ import BingoGrid from "./BingoGrid"
 import Timer from "./Timer"
 
 import styles from "../css/Board.module.css"
+import type { Task } from "../../../shared/types/tasks"
 
 type BoardProps = {
-    gameSettings: GameSettings
+    gameSettings: GameSettings,
+    tasks: Task[]
 }
 
-export default function Board({ gameSettings }: BoardProps) {
+export default function Board({ gameSettings, tasks }: BoardProps) {
     return (
         <div
             className={styles.board}

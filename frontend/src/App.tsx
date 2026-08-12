@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 import Board from './components/Board'
 import Settings from './components/Settings'
 
 import type { GridInput, DifficultyInput, TimerInput, Inputs, GameSettings, TimerSetting } from "./types/settings"
+import type { Task } from "../../shared/types/tasks"
 
 export default function App() {
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
@@ -19,6 +20,8 @@ export default function App() {
       variant: "count_up"
     }
   })
+
+  const [tasks, setTasks] = useState<Task[]>([])
 
   const updateInputs = <K extends keyof Inputs>(
     key: K,
@@ -72,10 +75,24 @@ export default function App() {
     return newSettings
   }
 
+  useEffect(() => {
+    const getTasks = async () => {
+      const response = await fetch("http://localhost:1234/")
+      const data = await response.json()
+
+      setTasks(data)
+      console.log(data)
+    }
+    getTasks()
+  } , [])
+
   return (
     <>
       {isGameStarted ? (
-        <Board gameSettings={createGameSettings(inputs)}/>
+        <Board
+          gameSettings={createGameSettings(inputs)}
+          tasks={tasks}
+        />
       ) : (
         <Settings
           generateBoardHandler={generateBoardHandler}
