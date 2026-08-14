@@ -4,10 +4,14 @@ import './App.css'
 import Board from './components/Board'
 import Settings from './components/Settings'
 
-import type { GridInput, DifficultyInput, TimerInput, Inputs, GameSettings, TimerSetting } from "./types/settings"
+import type { GridInput, DifficultyInput, TimerInput, Inputs } from "./types/settings"
 import type { Task } from "../../shared/types/tasks"
 
+import { createGameSettings } from "./settings/settingsHelper"
+
 export default function App() {
+  // Settings
+
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
 
   const [inputs, setInputs] = useState<Inputs>({
@@ -20,8 +24,6 @@ export default function App() {
       variant: "count_up"
     }
   })
-
-  const [tasks, setTasks] = useState<Task[]>([])
 
   const updateInputs = <K extends keyof Inputs>(
     key: K,
@@ -55,25 +57,9 @@ export default function App() {
     setIsGameStarted(true)
   }
 
-  const createGameSettings = (inputs: Inputs) => {
-    let timerSetting: TimerSetting
+  // Game
 
-    if(inputs.timer.variant === "count_down") {
-      timerSetting = inputs.timer.time === undefined ?
-        { variant: inputs.timer.variant, time: 1 } :
-        { variant: inputs.timer.variant, time: inputs.timer.time }
-    } else {
-      timerSetting = inputs.timer
-    }
-
-    const newSettings: GameSettings = {
-      grid: inputs.grid,
-      difficulty: inputs.difficulty,
-      timer: timerSetting
-    }
-
-    return newSettings
-  }
+  const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
     const getTasks = async () => {
@@ -85,6 +71,7 @@ export default function App() {
     }
     getTasks()
   } , [])
+
 
   return (
     <>
