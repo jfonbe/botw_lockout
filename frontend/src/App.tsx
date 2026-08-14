@@ -8,7 +8,7 @@ import type { GridInput, DifficultyInput, TimerInput, Inputs } from "./types/set
 import type { Task } from "../../shared/types/tasks"
 
 import { createGameSettings } from "./settings/settingsHelper"
-import { updateInputs } from './settings/inputHelper'
+import { getNewInputs } from './settings/inputHelper'
 
 export default function App() {
   // Settings
@@ -27,15 +27,15 @@ export default function App() {
   })
 
   const gridInputHandler = (value: GridInput) => {
-    setInputs(updateInputs("grid", value))
+    setInputs(getNewInputs("grid", value))
   }
 
   const difficultyInputHandler = (value: DifficultyInput) => {
-    setInputs(updateInputs("difficulty", value))
+    setInputs(getNewInputs("difficulty", value))
   }
 
   const timerInputHandler = (value: TimerInput) => {
-    setInputs(updateInputs("timer", value))
+    setInputs(getNewInputs("timer", value))
   }
 
   const dropdownHandlers = {
