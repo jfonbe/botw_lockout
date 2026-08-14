@@ -4,11 +4,12 @@ import './App.css'
 import Board from './components/Board'
 import Settings from './components/Settings'
 
-import type { GridInput, DifficultyInput, TimerInput, Inputs } from "./types/settings"
-import type { Task } from "../../shared/types/tasks"
+import type { GridInput, DifficultyInput, TimerInput, Inputs } from './types/settings'
+import type { Task } from '../../shared/types/tasks'
 
-import { createGameSettings } from "./settings/settingsHelper"
+import { createGameSettings } from './settings/settingsHelper'
 import { getNewInputs } from './settings/inputHelper'
+import { fetchTasks } from './api/tasksHelper'
 
 export default function App() {
   // Settings
@@ -53,16 +54,8 @@ export default function App() {
   const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
-    const getTasks = async () => {
-      const response = await fetch("http://localhost:1234/")
-      const data = await response.json()
-
-      setTasks(data)
-      console.log(data)
-    }
-    getTasks()
+    fetchTasks().then(setTasks)
   } , [])
-
 
   return (
     <>
