@@ -1,5 +1,4 @@
-import styles from "../css/DropdownButton.module.css"
-import type { GridInput, DifficultyInput, TimerInput } from "../types/settings"
+import styles from "../../css/DropdownButton.module.css"
 
 type DropdownButtonProps<T> = {
     value: T

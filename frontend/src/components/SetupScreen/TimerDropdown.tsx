@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react"
 
-import type { TimerInput } from "../types/settings"
-import type { DropdownOptions, Options } from "../types/components"
+import type { TimerInput } from "../../types/settings"
+import type { DropdownOptions } from "../../types/components"
 
-import { timerInputOptions } from "../data/timerInputOptions"
+import { timerInputOptions } from "../../data/timerInputOptions"
 
 type TimerDropdownProps = {
     inputOptions: DropdownOptions<TimerInput>,
@@ -12,7 +12,7 @@ type TimerDropdownProps = {
     getValueKey: (value: TimerInput) => React.Key,
 }
 
-import styles from "../css/Dropdown.module.css"
+import styles from "../../css/Dropdown.module.css"
 import DropdownButton from "./DropdownButton"
 
 export default function TimerDropdown ({ inputOptions, dropdownHandler, currentInput, getValueKey }: TimerDropdownProps) {

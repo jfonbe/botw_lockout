@@ -1,6 +1,6 @@
-import type { GridSettings } from "../types/settings"
+import type { GridSettings } from "../../types/settings"
 
-import styles from "../css/BingoGrid.module.css"
+import styles from "../../css/BingoGrid.module.css"
 
 type BingoGridProps = {
     gridSize: GridSettings

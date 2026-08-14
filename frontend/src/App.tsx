@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-import Board from './components/Board'
-import Settings from './components/Settings'
+import Board from './components/GameScreen/Board'
+import Settings from './components/SetupScreen/Settings'
 
 import type { GridInput, DifficultyInput, TimerInput, Inputs } from './types/settings'
 import type { Task } from '../../shared/types/tasks'

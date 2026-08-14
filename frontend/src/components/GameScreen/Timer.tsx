@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import type { TimerSettings } from "../types/settings"
+import type { TimerSettings } from "../../types/settings"
 
-import styles from "../css/Timer.module.css"
+import styles from "../../css/Timer.module.css"
 
 type TimerProps = {
     timerSettings: TimerSettings

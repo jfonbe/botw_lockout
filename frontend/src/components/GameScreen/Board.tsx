@@ -1,10 +1,10 @@
-import type { GameSettings } from "../types/settings"
+import type { GameSettings } from "../../types/settings"
 
 import BingoGrid from "./BingoGrid"
 import Timer from "./Timer"
 
-import styles from "../css/Board.module.css"
-import type { Task } from "../../../shared/types/tasks"
+import styles from "../../css/Board.module.css"
+import type { Task } from "../../../../shared/types/tasks"
 
 type BoardProps = {
     gameSettings: GameSettings,

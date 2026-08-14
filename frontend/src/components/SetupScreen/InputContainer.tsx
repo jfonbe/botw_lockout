@@ -1,10 +1,10 @@
 import Dropdown from "./Dropdown"
-import Button from "./Button"
+import BoardGeneratorButton from "./BoardGeneratorButton"
 
-import type { InputOptions, DropdownHandlerProps } from "../types/components"
-import type { Inputs } from "../types/settings"
+import type { InputOptions, DropdownHandlerProps } from "../../types/components"
+import type { Inputs } from "../../types/settings"
 
-import styles from "../css/InputContainer.module.css"
+import styles from "../../css/InputContainer.module.css"
 import TimerDropdown from "./TimerDropdown"
 
 type InputContainerProps = {
@@ -39,9 +39,9 @@ export default function InputContainer({ inputOptions, dropdownHandlers, generat
                     getValueKey={(option) => option.variant}
                 />
             </div>
-            <Button
+            <BoardGeneratorButton
                 generateBoardHandler={generateBoardHandler}
-            ></Button>
+            />
         </div>
     )
 }
