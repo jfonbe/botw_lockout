@@ -1,5 +1,6 @@
 import type { TimerInputOptions } from "../types/components"
 
+
 export const timerInputOptions: TimerInputOptions<number> = [
     {
         label: "1H",

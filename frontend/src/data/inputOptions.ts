@@ -1,5 +1,6 @@
 import type { InputOptions } from "../types/components"
 
+
 export const inputOptions: InputOptions = {
     grid: {
         title: "Grid",

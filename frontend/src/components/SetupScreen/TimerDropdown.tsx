@@ -1,9 +1,14 @@
 import { useState, useRef, useEffect } from "react"
 
+import DropdownButton from "./DropdownButton"
+
+import { timerInputOptions } from "../../data/timerInputOptions"
+
 import type { TimerInput } from "../../types/settings"
 import type { DropdownOptions } from "../../types/components"
 
-import { timerInputOptions } from "../../data/timerInputOptions"
+import styles from "../../css/Dropdown.module.css"
+
 
 type TimerDropdownProps = {
     inputOptions: DropdownOptions<TimerInput>,
@@ -11,9 +16,6 @@ type TimerDropdownProps = {
     currentInput: TimerInput,
     getValueKey: (value: TimerInput) => React.Key,
 }
-
-import styles from "../../css/Dropdown.module.css"
-import DropdownButton from "./DropdownButton"
 
 export default function TimerDropdown ({ inputOptions, dropdownHandler, currentInput, getValueKey }: TimerDropdownProps) {
     const [isOpen, setIsOpen] = useState(false)

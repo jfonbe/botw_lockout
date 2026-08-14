@@ -1,7 +1,11 @@
 import InputContainer from "./InputContainer"
+
 import { inputOptions } from "../../data/inputOptions"
+
 import type { SettingsProps } from "../../types/components"
+
 import styles from "../../css/Settings.module.css"
+
 
 export default function Settings({ generateBoardHandler, dropdownHandlers, inputs }: SettingsProps) {
     return (

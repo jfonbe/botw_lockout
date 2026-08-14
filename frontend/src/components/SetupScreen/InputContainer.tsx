@@ -1,11 +1,12 @@
 import Dropdown from "./Dropdown"
 import BoardGeneratorButton from "./BoardGeneratorButton"
+import TimerDropdown from "./TimerDropdown"
 
 import type { InputOptions, DropdownHandlerProps } from "../../types/components"
 import type { Inputs } from "../../types/settings"
 
 import styles from "../../css/InputContainer.module.css"
-import TimerDropdown from "./TimerDropdown"
+
 
 type InputContainerProps = {
     inputOptions: InputOptions,

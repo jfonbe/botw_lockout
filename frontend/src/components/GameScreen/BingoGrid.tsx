@@ -2,6 +2,7 @@ import type { GridSettings } from "../../types/settings"
 
 import styles from "../../css/BingoGrid.module.css"
 
+
 type BingoGridProps = {
     gridSize: GridSettings
 }

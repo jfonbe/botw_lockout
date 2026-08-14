@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 
 import Board from './components/GameScreen/Board'
 import Settings from './components/SetupScreen/Settings'
 
-import type { GridInput, DifficultyInput, TimerInput, Inputs } from './types/settings'
-import type { Task } from '../../shared/types/tasks'
-
 import { createGameSettings } from './settings/settingsHelper'
 import { getNewInputs } from './settings/inputHelper'
 import { fetchTasks } from './api/tasksHelper'
+
+import type { GridInput, DifficultyInput, TimerInput, Inputs } from './types/settings'
+import type { Task } from '../../shared/types/tasks'
+
+import './App.css'
+
 
 export default function App() {
   // Settings

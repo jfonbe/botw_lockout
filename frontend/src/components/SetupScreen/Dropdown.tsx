@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"
-import type { DropdownOptions } from "../../types/components"
-import styles from "../../css/Dropdown.module.css"
+
 import DropdownButton from "./DropdownButton"
+
+import type { DropdownOptions } from "../../types/components"
+
+import styles from "../../css/Dropdown.module.css"
+
 
 type DropdownProps<T> = {
     inputOptions: DropdownOptions<T>,
