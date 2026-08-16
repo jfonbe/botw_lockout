@@ -1,4 +1,4 @@
-import type { Inputs } from "../types/settings"
+import type { Inputs } from "../../types/settings"
 
 
 export const getNewInputs = <K extends keyof Inputs>(

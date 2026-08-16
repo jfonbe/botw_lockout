@@ -1,10 +1,14 @@
 import styles from "../../css/BoardGeneratorButton.module.css"
 
 
-export default function BoardGeneratorButton({generateBoardHandler}: any) {
+type BoardGeneratorButtonProps = {
+    startGameHandler: (event: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+export default function BoardGeneratorButton({ startGameHandler }: BoardGeneratorButtonProps) {
     return (
         <button
-            onClick={generateBoardHandler}
+            onClick={startGameHandler}
             className={styles.boardGeneratorButton}
         >
             Generiere Board

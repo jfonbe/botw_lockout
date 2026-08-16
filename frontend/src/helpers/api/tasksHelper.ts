@@ -1,4 +1,4 @@
-import type { Task } from "../../../shared/types/tasks"
+import type { Task } from "../../../../shared/types/tasks"
 
 
 export const fetchTasks = async (): Promise<Task[]> => {

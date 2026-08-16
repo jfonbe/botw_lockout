@@ -31,7 +31,7 @@ export type DropdownHandlerProps = {
 }
 
 export type SettingsProps = {
-    generateBoardHandler: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    startGameHandler: (event: React.MouseEvent<HTMLButtonElement>) => void,
     dropdownHandlers: DropdownHandlerProps,
     inputs: Inputs
 }

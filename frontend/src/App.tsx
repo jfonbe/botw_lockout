@@ -1,76 +1,39 @@
 import { useEffect, useState } from 'react'
 
-import Board from './components/GameScreen/Board'
-import Settings from './components/SetupScreen/Settings'
+import SetupScreen from './components/SetupScreen/SetupScreen'
+import GameScreen from './components/GameScreen/GameScreen'
 
-import { createGameSettings } from './settings/settingsHelper'
-import { getNewInputs } from './settings/inputHelper'
-import { fetchTasks } from './api/tasksHelper'
+import { fetchTasks } from './helpers/api/tasksHelper'
 
-import type { GridInput, DifficultyInput, TimerInput, Inputs } from './types/settings'
 import type { Task } from '../../shared/types/tasks'
 
 import './App.css'
+import type { Inputs } from './types/settings'
 
 
 export default function App() {
-  // Settings
-
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
-
-  const [inputs, setInputs] = useState<Inputs>({
-    grid: {
-      rows: 5,
-      cols: 5
-    },
-    difficulty: "medium",
-    timer: {
-      variant: "count_up"
-    }
-  })
-
-  const gridInputHandler = (value: GridInput) => {
-    setInputs(getNewInputs("grid", value))
-  }
-
-  const difficultyInputHandler = (value: DifficultyInput) => {
-    setInputs(getNewInputs("difficulty", value))
-  }
-
-  const timerInputHandler = (value: TimerInput) => {
-    setInputs(getNewInputs("timer", value))
-  }
-
-  const dropdownHandlers = {
-    gridInputHandler,
-    difficultyInputHandler,
-    timerInputHandler
-  }
-
-  const generateBoardHandler = () => {
-    setIsGameStarted(true)
-  }
-
-  // Game
-
+  const [board, setBoard] = useState<any>()
   const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
     fetchTasks().then(setTasks)
   } , [])
 
+  const startGame = (inputs: Inputs) => {
+    console.log(inputs)
+    setIsGameStarted(true)
+  }
+
   return (
     <>
       {isGameStarted ? (
-        <Board
-          gameSettings={createGameSettings(inputs)}
-          tasks={tasks}
+        <GameScreen
+          board={board}
         />
       ) : (
-        <Settings
-          generateBoardHandler={generateBoardHandler}
-          dropdownHandlers={dropdownHandlers}
-          inputs={inputs}
+        <SetupScreen
+          startGame={startGame}
         />
       )}
     </>

@@ -11,11 +11,11 @@ import styles from "../../css/InputContainer.module.css"
 type InputContainerProps = {
     inputOptions: InputOptions,
     dropdownHandlers: DropdownHandlerProps,
-    generateBoardHandler: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    startGameHandler: (event: React.MouseEvent<HTMLButtonElement>) => void,
     currentInputs: Inputs
 }
 
-export default function InputContainer({ inputOptions, dropdownHandlers, generateBoardHandler, currentInputs }: InputContainerProps) {
+export default function InputContainer({ inputOptions, dropdownHandlers, startGameHandler, currentInputs }: InputContainerProps) {
     return (
         <div className={styles.inputContainer}>
             <div className={styles.dropdownContainer}>
@@ -41,7 +41,7 @@ export default function InputContainer({ inputOptions, dropdownHandlers, generat
                 />
             </div>
             <BoardGeneratorButton
-                generateBoardHandler={generateBoardHandler}
+                startGameHandler={startGameHandler}
             />
         </div>
     )

@@ -1,4 +1,4 @@
-import type { Inputs, GameSettings, TimerSetting } from "../types/settings"
+import type { Inputs, GameSettings, TimerSetting } from "../../types/settings"
 
 
 export const createGameSettings = (inputs: Inputs) => {
