@@ -14,7 +14,7 @@ const tasks: Task[] = [
     },
     {
         id: 2,
-        text: "{count}x - Roter Leunen besiegen",
+        text: "{count}x - Roter Leune besiegen",
         difficulty: "hard",
         variables: {
             count: {

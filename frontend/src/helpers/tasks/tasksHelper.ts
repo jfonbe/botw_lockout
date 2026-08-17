@@ -1,14 +1,25 @@
 import type { Task } from "../../../../shared/types/tasks"
 import type { DifficultySetting, GridSetting } from "../../types/settings"
 
-export const getBoardTasks = (tasks: Task[], difficulty: DifficultySetting, grid: GridSetting) => {
+export const getBoardTasksArray = (tasks: Task[], difficulty: DifficultySetting, grid: GridSetting) => {
     const distribution =  getTaskDistribution(difficulty, grid)
 
-    return shuffle([
+    let boardTaskArray: Task[][] = Array.from({ length: grid.cols }, () => [])
+
+    const newArr = shuffle([
         ...pickTasks(tasks, "easy", distribution.easy),
         ...pickTasks(tasks, "medium", distribution.medium),
         ...pickTasks(tasks, "hard", distribution.hard),
     ])
+
+    newArr.forEach((element, index) => {
+        const row = Math.floor(index / grid.rows)
+        const col = index % 3
+
+        boardTaskArray[row][col] = element
+    })
+
+    return boardTaskArray
 }
 
 const getTaskDistribution = (difficulty: DifficultySetting, grid: GridSetting) => {

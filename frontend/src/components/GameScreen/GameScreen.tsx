@@ -1,12 +1,16 @@
-import type { GameSettings } from "../../types/settings"
-import type { Task } from "../../../../shared/types/tasks"
+import Board from "./Board"
+
+import type { BoardSettings } from "../../types/components"
+
 
 type GameScreenProps = {
-    board: any
+    board: BoardSettings
 }
 
 export default function GameScreen({ board }: GameScreenProps) {
     return (
-        <></>
+        <Board
+            board={board}
+        />
     )
 }

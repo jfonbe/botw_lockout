@@ -4,17 +4,18 @@ import SetupScreen from './components/SetupScreen/SetupScreen'
 import GameScreen from './components/GameScreen/GameScreen'
 
 import { fetchTasks } from './helpers/api/fetchHelper'
-import { getBoardTasks } from './helpers/tasks/tasksHelper'
+import { getBoardTasksArray } from './helpers/tasks/tasksHelper'
 
 import type { Task } from '../../shared/types/tasks'
+import type { Inputs } from './types/settings'
+import type { BoardSettings } from './types/components'
 
 import './App.css'
-import type { Inputs } from './types/settings'
 
 
 export default function App() {
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
-  const [board, setBoard] = useState<any>()
+  const [board, setBoard] = useState<BoardSettings>()
   const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
@@ -22,13 +23,18 @@ export default function App() {
   } , [])
 
   const startGame = (inputs: Inputs) => {
-    console.log(getBoardTasks(tasks, inputs.difficulty, inputs.grid))
+    const newBoard = {
+      tasks: getBoardTasksArray(tasks, inputs.difficulty, inputs.grid),
+      settings: inputs
+    }
+
     setIsGameStarted(true)
+    setBoard(newBoard)
   }
 
   return (
     <>
-      {isGameStarted ? (
+      {isGameStarted && board !== undefined ? (
         <GameScreen
           board={board}
         />

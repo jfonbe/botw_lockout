@@ -5,6 +5,8 @@ import type {
     Inputs,
 } from "./settings"
 
+import type { Task } from "../../../shared/types/tasks"
+
 
 export type Options<T> = {
     label: string,
@@ -34,5 +36,10 @@ export type SettingsProps = {
     startGameHandler: (event: React.MouseEvent<HTMLButtonElement>) => void,
     dropdownHandlers: DropdownHandlerProps,
     inputs: Inputs
+}
+
+export type BoardSettings = {
+    tasks: Task[][],
+    settings: Inputs
 }
 
