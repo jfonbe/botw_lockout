@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react'
 import SetupScreen from './components/SetupScreen/SetupScreen'
 import GameScreen from './components/GameScreen/GameScreen'
 
-import { fetchTasks } from './helpers/api/tasksHelper'
+import { fetchTasks } from './helpers/api/fetchHelper'
+import { getBoardTasks } from './helpers/tasks/tasksHelper'
 
 import type { Task } from '../../shared/types/tasks'
 
@@ -21,7 +22,7 @@ export default function App() {
   } , [])
 
   const startGame = (inputs: Inputs) => {
-    console.log(inputs)
+    console.log(getBoardTasks(tasks, inputs.difficulty, inputs.grid))
     setIsGameStarted(true)
   }
 
