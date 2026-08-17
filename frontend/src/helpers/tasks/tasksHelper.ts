@@ -16,10 +16,42 @@ export const getBoardTasksArray = (tasks: Task[], difficulty: DifficultySetting,
         const row = Math.floor(index / grid.rows)
         const col = index % 3
 
-        boardTaskArray[row][col] = element
+        boardTaskArray[row][col] = setCount(element)
     })
 
     return boardTaskArray
+}
+
+const setCount = (task: Task) => {
+    console.log(task)
+    let count: number = 0
+
+
+    if(task.variables?.count) {
+        count = randomNumber(task.variables.count.min, task.variables.count.max)
+
+        const newTask = {
+            ...task,
+            text: replaceCountText(count, task.text)
+        }
+
+        return newTask
+
+    } else {
+        return task
+    }
+}
+
+const replaceCountText = (count: number, text: string) => {
+    const substring = "{count}"
+    const startIndex = text.indexOf("{count}")
+    const endIndex = startIndex + substring.length
+
+    return text.slice(0, startIndex) + count + text.slice(endIndex)
+}
+
+const randomNumber = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 const getTaskDistribution = (difficulty: DifficultySetting, grid: GridSetting) => {
