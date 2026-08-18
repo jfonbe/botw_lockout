@@ -1,10 +1,11 @@
 import type { Task } from "../../../../shared/types/tasks"
+import type { BoardTask } from "../../types/components"
 import type { DifficultySetting, GridSetting } from "../../types/settings"
 
 export const getBoardTasksArray = (tasks: Task[], difficulty: DifficultySetting, grid: GridSetting) => {
     const distribution =  getTaskDistribution(difficulty, grid)
 
-    let boardTaskArray: Task[][] = Array.from({ length: grid.cols }, () => [])
+    let boardTaskArray: BoardTask[] = []
 
     const newArr = shuffle([
         ...pickTasks(tasks, "easy", distribution.easy),
@@ -16,30 +17,31 @@ export const getBoardTasksArray = (tasks: Task[], difficulty: DifficultySetting,
         const row = Math.floor(index / grid.rows)
         const col = index % 3
 
-        boardTaskArray[row][col] = setCount(element)
+        boardTaskArray.push(createBoardTask(element, row, col))
     })
 
     return boardTaskArray
 }
 
-const setCount = (task: Task) => {
-    console.log(task)
+const createBoardTask = (task: Task, row: number, col: number) => {
     let count: number = 0
 
-
-    if(task.variables?.count) {
+    if (task.variables?.count) {
         count = randomNumber(task.variables.count.min, task.variables.count.max)
-
-        const newTask = {
-            ...task,
-            text: replaceCountText(count, task.text)
-        }
-
-        return newTask
-
-    } else {
-        return task
     }
+
+    const newElement = {
+        placement: {
+            row: row,
+            col: col
+        },
+        text: task.variables?.count
+            ? replaceCountText(count, task.text)
+            : task.text,
+        isCompleted: false
+    }
+
+    return newElement
 }
 
 const replaceCountText = (count: number, text: string) => {

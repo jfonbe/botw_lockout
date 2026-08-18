@@ -5,8 +5,6 @@ import type {
     Inputs,
 } from "./settings"
 
-import type { Task } from "../../../shared/types/tasks"
-
 
 export type Options<T> = {
     label: string,
@@ -38,8 +36,19 @@ export type SettingsProps = {
     inputs: Inputs
 }
 
+export type BoardTask = {
+    placement: Placement,
+    text: string,
+    isCompleted: boolean
+}
+
+export type Placement = {
+    row: number,
+    col: number
+}
+
 export type BoardSettings = {
-    tasks: Task[][],
+    boardTasks: BoardTask[],
     settings: Inputs
 }
 

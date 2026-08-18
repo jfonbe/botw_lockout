@@ -23,8 +23,8 @@ export default function App() {
   } , [])
 
   const startGame = (inputs: Inputs) => {
-    const newBoard = {
-      tasks: getBoardTasksArray(tasks, inputs.difficulty, inputs.grid),
+    const newBoard: BoardSettings = {
+      boardTasks: getBoardTasksArray(tasks, inputs.difficulty, inputs.grid),
       settings: inputs
     }
 
