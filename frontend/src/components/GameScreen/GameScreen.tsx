@@ -10,10 +10,19 @@ type GameScreenProps = {
 }
 
 export default function GameScreen({ board }: GameScreenProps) {
-    const [boardActivity, setBoardActivity] = useState<Boolean[][]>(Array.from({ length: board.settings.grid.rows }, () => []))
+    const arrayLength = board.settings.grid.rows * board.settings.grid.cols
+
+    const emptyBoard = Array.from({ length: arrayLength }, () =>
+        Array.from({ length: arrayLength }, () => false)
+    )
+    const [boardActivity, setBoardActivity] = useState<Boolean[][]>(emptyBoard)
 
     const updateActivity = (row: number, col: number, isDone: boolean) => {
-        console.log(row, col, isDone)
+        const newBoard = [...boardActivity]
+        newBoard[row] = [...newBoard[row]]
+        newBoard[row][col] = isDone
+
+        setBoardActivity(newBoard)
     }
 
     return (

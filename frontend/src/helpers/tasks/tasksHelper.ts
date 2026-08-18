@@ -15,7 +15,7 @@ export const getBoardTasksArray = (tasks: Task[], difficulty: DifficultySetting,
 
     newArr.forEach((element, index) => {
         const row = Math.floor(index / grid.rows)
-        const col = index % 3
+        const col = index % grid.cols
 
         boardTaskArray.push(createBoardTask(element, row, col))
     })
