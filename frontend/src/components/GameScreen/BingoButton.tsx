@@ -24,7 +24,7 @@ export default function BingoButton({ boardTask, updateActivity }: BingoButtonPr
         <>
             <button
                 onClick={clickHandler}
-                className={styles.bingoButton}
+                className={`${styles.bingoButton} ${isDone ? styles.active : ""}`}
             >{text}</button>
         </>
     )
