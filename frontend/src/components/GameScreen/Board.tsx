@@ -16,7 +16,9 @@ export default function Board({ board, updateActivity }: BoardProps) {
         <div
             className={styles.board}
         >
-            <h2 className={styles.heading}>Breath of the Wild - Lockout</h2>
+            <div className={styles.headingContainer}>
+                <h2 className={styles.heading}>Breath of the Wild - Lockout</h2>
+            </div>
             <BingoGrid
                 boardTasks={board.boardTasks}
                 gridSize={board.settings.grid}

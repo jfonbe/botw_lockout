@@ -45,9 +45,9 @@ export default function Timer({ timerSettings }: TimerProps) {
 
     return (
         <div
-            className={styles.timer}
+            className={styles.timerContainer}
         >
-            {counterString}
+            <span className={styles.timer}>{counterString}</span>
         </div>
     )
 }
