@@ -97,9 +97,7 @@ const getTaskDistribution = (difficulty: DifficultySetting, grid: GridSetting) =
 }
 
 const pickTasks = (tasks: Task[], difficulty: DifficultySetting, amount: number) => {
-    return shuffle(
-        tasks.filter((option: any) => option.difficulty === difficulty).slice(0, amount)
-    )
+    return shuffle(tasks).filter((option: any) => option.difficulty === difficulty).slice(0, amount)
 }
 
 const shuffle = (array: Task[]) => {
