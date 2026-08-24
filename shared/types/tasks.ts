@@ -4,9 +4,12 @@ export type Task = {
     difficulty:
         | "easy"
         | "medium"
-        | "hard"
+        | "hard",
+    type: TaskTypes,
     variables?: Variables
 }
+
+export type TaskTypes = "collect" | "kill" | "quest"
 
 export type Count = {
     min: number,
