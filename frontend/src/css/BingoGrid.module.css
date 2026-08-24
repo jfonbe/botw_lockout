@@ -12,6 +12,7 @@
 
     background-color: var(--bg-color-2);
     border-radius: 15px;
+    border: 1px solid var(--fg-color-2);
 }
 
 .gridRow {

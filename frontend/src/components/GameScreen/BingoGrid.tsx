@@ -30,6 +30,7 @@ export default function BingoGrid({ boardTasks, gridSize, updateActivity }: Bing
                             key={col}
                             boardTask={boardTask}
                             updateActivity={updateActivity}
+                            buttonCount={gridSize.rows * gridSize.cols}
                         />
                     })}
                 </div>
