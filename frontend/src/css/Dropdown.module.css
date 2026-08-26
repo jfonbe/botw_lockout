@@ -73,10 +73,10 @@
     width: calc(100% - 22px);
     padding: 10px;
 
-    border-radius: 6px;
+    border-radius: 10px;
 
     background-color: var(--bg-color-1);
-    border: 1px solid var(--fg-color-1);
+    border: 1px solid var(--fg-color-2);
 
     animation: slideIn 200ms ease;
 }
@@ -85,6 +85,8 @@
     display: flex;
     justify-content: center;
     width: 100%;
+
+    animation: slideIn 200ms ease;
 }
 
 .time {

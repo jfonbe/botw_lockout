@@ -2,8 +2,9 @@
 
 :root {
   --bg-color-1: #1E2326;
+  --bg-color-1-brighter: #22282b;
   --bg-color-2: #272E33;
-  --fg-color-1: #A99F89;
+  --fg-color-1: #807867;
   --fg-color-2: #D3C6AA;
   --green-color: #83C092;
 }
