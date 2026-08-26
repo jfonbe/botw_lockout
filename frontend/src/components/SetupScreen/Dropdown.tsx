@@ -20,12 +20,16 @@ type DropdownProps<T> = {
 
 export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInput, getValueKey, variant}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState(false)
+    const [isVisible, setIsVisible] = useState<boolean>(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsOpen(false)
+                setIsVisible(false)
+                setTimeout(() => {
+                    setIsOpen(false)
+                }, 100)
             }
         }
 
@@ -37,7 +41,15 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
     }, [])
 
     const clickHandler = () => {
-        setIsOpen(!isOpen)
+        setIsVisible(!isVisible)
+
+        if(isOpen) {
+            setTimeout(() => {
+                setIsOpen(!isOpen)
+            }, 100)
+        } else {
+            setIsOpen(!isOpen)
+        }
     }
 
     const currentOption = inputOptions.options.find(
@@ -60,7 +72,7 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
 
             {isOpen && (
                 <div
-                    className={styles.dropdownMenu}
+                    className={`${styles.dropdownMenu} ${isVisible ? styles.visible : styles.hidden}`}
                 >
                     {inputOptions.options.map((option => (
                         <DropdownButton
@@ -69,6 +81,7 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
                             dropdownHandler={dropdownHandler}
                             variant={variant}
                             setIsOpen={setIsOpen}
+                            setIsVisible={setIsVisible}
                             closeOnSelect={true}
                             key={getValueKey(option.value)}
                         />

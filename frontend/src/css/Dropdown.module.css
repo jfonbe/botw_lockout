@@ -10,6 +10,18 @@
   }
 }
 
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
 .dropdown {
     display: flex;
     flex-direction: column;
@@ -85,8 +97,6 @@
     display: flex;
     justify-content: center;
     width: 100%;
-
-    animation: slideIn 200ms ease;
 }
 
 .time {
@@ -98,4 +108,12 @@
         margin: 0;
         width: 100%;
     }
+}
+
+.visible {
+    animation: slideIn 200ms ease;
+}
+
+.hidden {
+    animation: slideOut 200ms ease;
 }
