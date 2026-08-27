@@ -14,10 +14,11 @@
     margin: 0 20px;
     margin-bottom: 50px;
 
-    font-size: 60px;
+    font-size: 80px;
+    color: var(--heading-color);
     text-transform: uppercase;
     text-align: center;
-    text-shadow: 0 0 10px var(--fg-color-2);
+    text-shadow: 0 0 10px var(--heading-color);
 }
 
 @media (max-width: 768px) {
