@@ -1,12 +1,11 @@
 .timerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-self: center;
 }
 
 .timer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     font-size: 60px;
     color: var(--fg-color-2);
     text-shadow: 5px 5px 0px black;

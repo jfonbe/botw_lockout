@@ -3,8 +3,9 @@
     flex-direction: column;
     justify-content: space-between;
 
-    height: 20%;
-    width: calc(100% - 250px);
+    height: 200px;
+    width: calc(100% - 80px);
+    max-width: 1800px;
     padding: 20px;
 
     background-color: var(--bg-color-2);
@@ -19,20 +20,9 @@
     justify-content: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .inputContainer {
-        height: 40%;
-    }
-
-    .dropdownContainer {
-        flex-direction: column;
-        gap: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    .inputContainer {
-        height: 50%;
+        height: 450px;
     }
 
     .dropdownContainer {

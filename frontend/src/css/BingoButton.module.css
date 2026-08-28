@@ -1,7 +1,10 @@
 .bingoButton {
     flex: 1;
-    margin: 2px;
+    margin: 3px;
     padding: 0;
+
+    aspect-ratio: 1;
+    width: 10%;
 
     background-color: var(--bg-color-1);
     color: var(--fg-color-2);
