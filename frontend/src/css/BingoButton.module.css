@@ -12,21 +12,26 @@
 
     overflow-wrap: anywhere;
 
-    transition: border-color 0.2s ease, transform 0.3s ease;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.3s ease;
     container-type: size;
 }
 
 .bingoButton:hover {
     cursor: pointer;
-    color: var(--green-color);
     border-color: var(--green-color);
 
     transform: translateY(-2px);
 }
 
 .active {
-    color: var(--green-color);
-    border-color: var(--green-color);
+    color: var(--bg-color-1);
+    background-color: var(--green-color);
+    border-color: var(--fg-color-2);
+    box-shadow: 0 0 10px var(--green-color);
 
     transform: translateY(-2px);
 }
