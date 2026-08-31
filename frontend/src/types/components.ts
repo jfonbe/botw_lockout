@@ -24,15 +24,14 @@ export type InputOptions = {
     timer: DropdownOptions<TimerInput>
 }
 
-export type DropdownHandlerProps = {
-    gridInputHandler: (value: GridInput) => void,
-    difficultyInputHandler: (value: DifficultyInput) => void,
-    timerInputHandler: (value: TimerInput) => void
-}
+export type OnInputChange = <K extends keyof Inputs>(
+    key: K,
+    value: Inputs[K]
+) => void
 
 export type SettingsProps = {
-    startGameHandler: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    dropdownHandlers: DropdownHandlerProps,
+    onStartGame: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    onInputChange: OnInputChange,
     inputs: Inputs
 }
 

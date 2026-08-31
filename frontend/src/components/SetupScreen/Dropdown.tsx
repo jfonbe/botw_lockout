@@ -9,8 +9,8 @@ import styles from "../../css/Dropdown.module.css"
 
 type DropdownProps<T> = {
     inputOptions: DropdownOptions<T>,
-    dropdownHandler: (value: T) => void,
     currentInput: T,
+    onChange: (value: T) => void,
     getValueKey: (value: T) => React.Key
     variant:
         | "grid"
@@ -18,7 +18,7 @@ type DropdownProps<T> = {
         | "timer",
 }
 
-export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInput, getValueKey, variant}: DropdownProps<T>) {
+export default function Dropdown<T> ({inputOptions, currentInput, onChange, getValueKey, variant}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState(false)
     const [isVisible, setIsVisible] = useState<boolean>(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -78,7 +78,7 @@ export default function Dropdown<T> ({inputOptions, dropdownHandler, currentInpu
                         <DropdownButton
                             value={option.value}
                             label={option.label}
-                            dropdownHandler={dropdownHandler}
+                            onChange={onChange}
                             variant={variant}
                             setIsOpen={setIsOpen}
                             setIsVisible={setIsVisible}

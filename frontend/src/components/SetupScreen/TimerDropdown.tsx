@@ -12,12 +12,12 @@ import styles from "../../css/Dropdown.module.css"
 
 type TimerDropdownProps = {
     inputOptions: DropdownOptions<TimerInput>,
-    dropdownHandler: (value: TimerInput) => void,
+    onChange: (value: TimerInput) => void,
     currentInput: TimerInput,
     getValueKey: (value: TimerInput) => React.Key,
 }
 
-export default function TimerDropdown ({ inputOptions, dropdownHandler, currentInput, getValueKey }: TimerDropdownProps) {
+export default function TimerDropdown ({ inputOptions, onChange, currentInput, getValueKey }: TimerDropdownProps) {
     const [isOpen, setIsOpen] = useState(false)
     const [isVisible, setIsVisible] = useState<boolean>(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -88,7 +88,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                         <DropdownButton
                             value={option.value}
                             label={option.label}
-                            dropdownHandler={dropdownHandler}
+                            onChange={onChange}
                             variant={"timer"}
                             setIsOpen={setIsOpen}
                             setIsVisible={setIsVisible}
@@ -109,7 +109,7 @@ export default function TimerDropdown ({ inputOptions, dropdownHandler, currentI
                                     <DropdownButton
                                         value={newVal}
                                         label={option.label}
-                                        dropdownHandler={dropdownHandler}
+                                        onChange={onChange}
                                         variant={"timer"}
                                         setIsOpen={setIsOpen}
                                         setIsVisible={setIsVisible}

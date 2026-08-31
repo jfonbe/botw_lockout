@@ -4,7 +4,7 @@ import Settings from "./Settings"
 
 import { createGameSettings } from "../../helpers/settings/settingsHelper"
 
-import type { Inputs, GridInput, DifficultyInput, TimerInput } from "../../types/settings"
+import type { Inputs } from "../../types/settings"
 
 type SetupScreenProps = {
     startGame: (input: Inputs) => void
@@ -32,33 +32,15 @@ export default function SetupScreen({ startGame }: SetupScreenProps) {
         }))
     }
 
-    const gridInputHandler = (value: GridInput) => {
-        updateInputs("grid", value)
-    }
-
-    const difficultyInputHandler = (value: DifficultyInput) => {
-        updateInputs("difficulty", value)
-    }
-
-    const timerInputHandler = (value: TimerInput) => {
-        updateInputs("timer", value)
-    }
-
-    const dropdownHandlers = {
-        gridInputHandler,
-        difficultyInputHandler,
-        timerInputHandler
-    }
-
-    const startGameHandler = () => {
+    const onStartGame = () => {
         startGame(createGameSettings(inputs))
     }
 
     return (
         <Settings
-            startGameHandler={startGameHandler}
-            dropdownHandlers={dropdownHandlers}
             inputs={inputs}
+            onInputChange={updateInputs}
+            onStartGame={onStartGame}
         />
     )
 }
