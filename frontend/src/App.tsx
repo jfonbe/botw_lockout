@@ -14,7 +14,6 @@ import './App.css'
 
 
 export default function App() {
-  const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
   const [board, setBoard] = useState<BoardSettings>()
   const [tasks, setTasks] = useState<Task[]>([])
 
@@ -27,14 +26,12 @@ export default function App() {
       boardTasks: getBoardTasksArray(tasks, inputs.difficulty, inputs.grid),
       settings: inputs
     }
-
-    setIsGameStarted(true)
     setBoard(newBoard)
   }
 
   return (
     <>
-      {isGameStarted && board !== undefined ? (
+      {board !== undefined ? (
         <GameScreen
           board={board}
         />
