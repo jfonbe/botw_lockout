@@ -29,12 +29,6 @@ export type OnInputChange = <K extends keyof Inputs>(
     value: Inputs[K]
 ) => void
 
-export type SettingsProps = {
-    onStartGame: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    onInputChange: OnInputChange,
-    inputs: Inputs
-}
-
 export type BoardTask = {
     placement: Placement,
     text: string,
