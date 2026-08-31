@@ -6,7 +6,7 @@
 }
 
 .timer {
-    font-size: 60px;
+    font-size: min(10vh, 10vw);
     color: var(--fg-color-2);
-    text-shadow: 5px 5px 0px black;
+    text-shadow: min(1vh, 1vw) min(1vh, 1vw) 0px black;
 }

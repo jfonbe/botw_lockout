@@ -1,15 +1,18 @@
 .bingoButton {
     flex: 1;
-    margin: 3px;
-    padding: 0;
+    margin: clamp(1px, 0.5vw, 3px);
+    padding: 5px;
 
     aspect-ratio: 1;
-    width: 10%;
 
     background-color: var(--bg-color-1);
     color: var(--fg-color-2);
-    border: 3px solid var(--fg-color-1);
+    border: clamp(1px, 0.5vw, 3px) solid var(--fg-color-1);
     border-radius: 10px;
+    font-size: clamp(0.4rem, min(1.8vw, 1.8vh), 4rem);
+    font-weight: bold;
+
+    overflow-wrap: anywhere;
 
     transition: border-color 0.2s ease, transform 0.3s ease;
 }
@@ -27,16 +30,4 @@
     border-color: var(--green-color);
 
     transform: translateY(-2px);
-}
-
-.normal {
-    font-size: 14px;
-}
-
-.big {
-    font-size: 18px;
-}
-
-.small {
-    font-size: 8px;
 }

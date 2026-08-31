@@ -23,6 +23,7 @@ html, body {
   font-style: normal;
 
   background-color: var(--bg-color-1);
+  overflow: auto;
 }
 
 #root {
