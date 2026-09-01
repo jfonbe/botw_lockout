@@ -1,0 +1,5 @@
+.loadingText, .errorText {
+    color: var(--fg-color-2);
+    font-size: 5cqw;
+    text-align: center;
+}

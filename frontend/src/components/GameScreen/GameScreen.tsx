@@ -8,6 +8,7 @@ import { fetchTasks } from '../../helpers/api/fetchHelper'
 import type { Inputs } from "../../types/settings"
 import type { BoardTask } from "../../types/components"
 
+import styles from "../../css/GameScreen.module.css"
 
 type GameScreenProps = {
     boardSettings: Inputs
@@ -48,9 +49,9 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
     }
 
     if (isLoading == true) {
-        return (<div>Board lädt!</div>)
+        return (<div><span className={styles.loadingText}>Board lädt...</span></div>)
     } else if (error) {
-        return (<div>Aufgaben konnten nicht geladen werden!</div>)
+        return (<div><span className={styles.errorText}>Aufgaben konnten nicht geladen werden!</span></div>)
     } else {
         return (
             <Board
