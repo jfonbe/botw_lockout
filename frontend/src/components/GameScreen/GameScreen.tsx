@@ -1,16 +1,38 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import Board from "./Board"
 
-import type { BoardSettings } from "../../types/components"
+import { getBoardTasksArray } from '../../helpers/tasks/tasksHelper'
+import { fetchTasks } from '../../helpers/api/fetchHelper'
+
+import type { Inputs } from "../../types/settings"
+import type { BoardTask } from "../../types/components"
 
 
 type GameScreenProps = {
-    board: BoardSettings
+    boardSettings: Inputs
 }
 
-export default function GameScreen({ board }: GameScreenProps) {
-    const arrayLength = board.settings.grid.rows * board.settings.grid.cols
+export default function GameScreen({ boardSettings }: GameScreenProps) {
+    const [tasks, setTasks] = useState<BoardTask[]>([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        const loadTasks = async () => {
+            try {
+                const fetchedTasks = await fetchTasks()
+                setTasks(getBoardTasksArray(fetchedTasks, boardSettings.difficulty, boardSettings.grid))
+            } catch {
+                setError("Tasks konnten nicht geladen werden.")
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        loadTasks()
+        } , [])
+
+    const arrayLength = boardSettings.grid.rows * boardSettings.grid.cols
 
     const emptyBoard = Array.from({ length: arrayLength }, () =>
         Array.from({ length: arrayLength }, () => false)
@@ -25,10 +47,18 @@ export default function GameScreen({ board }: GameScreenProps) {
         setBoardActivity(newBoard)
     }
 
-    return (
-        <Board
-            board={board}
-            updateActivity={updateActivity}
-        />
-    )
+    if (isLoading == true) {
+        return (<div>Board lädt!</div>)
+    } else if (error) {
+        return (<div>Aufgaben konnten nicht geladen werden!</div>)
+    } else {
+        return (
+            <Board
+                gridSettings={boardSettings.grid}
+                timerSettings={boardSettings.timer}
+                tasks={tasks}
+                updateActivity={updateActivity}
+            />
+        )
+    }
 }

@@ -1,17 +1,19 @@
 import BingoGrid from "./BingoGrid"
 import Timer from "./Timer"
 
-import type { BoardSettings } from "../../types/components"
+import type { BoardTask } from "../../types/components"
+import type { GridInput, TimerInput } from "../../types/settings"
 
 import styles from "../../css/Board.module.css"
 
 type BoardProps = {
-    board: BoardSettings,
+    gridSettings: GridInput
+    timerSettings: TimerInput
+    tasks: BoardTask[]
     updateActivity: (row: number, col: number, isDone: boolean) => void
 }
 
-
-export default function Board({ board, updateActivity }: BoardProps) {
+export default function Board({ gridSettings, timerSettings, tasks, updateActivity }: BoardProps) {
     return (
         <div
             className={styles.board}
@@ -20,12 +22,12 @@ export default function Board({ board, updateActivity }: BoardProps) {
                 <h2 className={styles.heading}>Breath of the Wild - Lockout</h2>
             </div>
             <BingoGrid
-                boardTasks={board.boardTasks}
-                gridSize={board.settings.grid}
+                boardTasks={tasks}
+                gridSize={gridSettings}
                 updateActivity={updateActivity}
             />
             <Timer
-                timerSettings={board.settings.timer}
+                timerSettings={timerSettings}
             />
         </div>
     )

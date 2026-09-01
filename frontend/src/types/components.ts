@@ -41,7 +41,6 @@ export type Placement = {
 }
 
 export type BoardSettings = {
-    boardTasks: BoardTask[],
-    settings: Inputs
+    boardSettings: Inputs
 }
 
