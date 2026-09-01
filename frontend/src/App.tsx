@@ -13,9 +13,7 @@ export default function App() {
 
   const startGame = (inputs: Inputs) => {
     const newBoardSettings: Inputs = {
-      grid: inputs.grid,
-      difficulty: inputs.difficulty,
-      timer: inputs.timer
+      ...inputs
     }
     setBoardSettings(newBoardSettings)
   }

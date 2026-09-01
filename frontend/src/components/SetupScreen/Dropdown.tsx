@@ -19,17 +19,13 @@ type DropdownProps<T> = {
 }
 
 export default function Dropdown<T> ({inputOptions, currentInput, onChange, getValueKey, variant}: DropdownProps<T>) {
-    const [isOpen, setIsOpen] = useState(false)
-    const [isVisible, setIsVisible] = useState<boolean>(false)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsVisible(false)
-                setTimeout(() => {
-                    setIsOpen(false)
-                }, 100)
+                setIsOpen(false)
             }
         }
 
@@ -41,15 +37,7 @@ export default function Dropdown<T> ({inputOptions, currentInput, onChange, getV
     }, [])
 
     const clickHandler = () => {
-        setIsVisible(!isVisible)
-
-        if(isOpen) {
-            setTimeout(() => {
-                setIsOpen(!isOpen)
-            }, 100)
-        } else {
-            setIsOpen(!isOpen)
-        }
+        setIsOpen(!isOpen)
     }
 
     const currentOption = inputOptions.options.find(
@@ -69,25 +57,21 @@ export default function Dropdown<T> ({inputOptions, currentInput, onChange, getV
             >
                 {currentOption?.label ?? inputOptions.title}
             </button>
-
-            {isOpen && (
-                <div
-                    className={`${styles.dropdownMenu} ${isVisible ? styles.visible : styles.hidden}`}
-                >
-                    {inputOptions.options.map((option => (
-                        <DropdownButton
-                            value={option.value}
-                            label={option.label}
-                            onChange={onChange}
-                            variant={variant}
-                            setIsOpen={setIsOpen}
-                            setIsVisible={setIsVisible}
-                            closeOnSelect={true}
-                            key={getValueKey(option.value)}
-                        />
-                    )))}
-                </div>
-            )}
+            <div
+                className={`${styles.dropdownMenu} ${isOpen ? styles.visible : styles.hidden}`}
+            >
+                {inputOptions.options.map((option => (
+                    <DropdownButton
+                        value={option.value}
+                        label={option.label}
+                        onChange={onChange}
+                        variant={variant}
+                        setIsOpen={setIsOpen}
+                        closeOnSelect={true}
+                        key={getValueKey(option.value)}
+                    />
+                )))}
+            </div>
         </div>
     )
 }

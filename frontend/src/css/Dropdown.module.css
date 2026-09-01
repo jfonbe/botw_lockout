@@ -1,27 +1,3 @@
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
 .dropdown {
     display: flex;
     flex-direction: column;
@@ -90,7 +66,9 @@
     border: 1px solid var(--fg-color-2);
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 
-    animation: slideIn 200ms ease;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
 
 .timeDropdownMenu {
@@ -111,9 +89,11 @@
 }
 
 .visible {
-    animation: slideIn 200ms ease;
+    transform: translateY(5px);
+    opacity: 1;
 }
 
 .hidden {
-    animation: slideOut 200ms ease;
+    transform: translateY(-5px);
+    opacity: 0;
 }
