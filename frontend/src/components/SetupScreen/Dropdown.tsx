@@ -66,25 +66,20 @@ export default function Dropdown<T> ({inputOptions, label, onChange, variant, ch
             >
                 {label}
             </button>
-
-            {isOpen && (
-                <div
-                    className={`${styles.dropdownMenu} ${isOpen ? styles.visible : styles.hidden}`}
-                >
-                    {inputOptions.options.map((option => (
-                        <DropdownButton
-                            value={option.value}
-                            label={option.label}
-                            onChange={handleSelect}
-                            variant={variant}
-                            key={option.label}
-                        />
-                    )))}
-
-                    {children?.(closeDropdown)}
-
-                </div>
-            )}
+            <div
+                className={`${styles.dropdownMenu} ${isOpen ? styles.visible : styles.hidden}`}
+            >
+                {inputOptions.options.map((option => (
+                    <DropdownButton
+                        value={option.value}
+                        label={option.label}
+                        onChange={handleSelect}
+                        variant={variant}
+                        key={option.label}
+                    />
+                )))}
+                {children?.(closeDropdown)}
+            </div>
         </div>
     )
 }

@@ -68,7 +68,8 @@
 
     transition:
         opacity 0.3s ease,
-        transform 0.3s ease;
+        transform 0.3s ease,
+        visibility 0.3s ease;
 }
 
 .timeDropdownMenu {
@@ -91,9 +92,11 @@
 .visible {
     transform: translateY(5px);
     opacity: 1;
+    visibility: visible;
 }
 
 .hidden {
     transform: translateY(-5px);
     opacity: 0;
+    visibility: hidden;
 }
