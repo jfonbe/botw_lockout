@@ -6,19 +6,12 @@ type DropdownButtonProps<T> = {
     label: string,
     onChange: (value: T) => void,
     variant: "grid" | "difficulty" | "timer"
-    setIsOpen: (value: boolean) => void,
-    closeOnSelect: boolean
 }
 
-export default function DropdownButton<T>({ value,  label, onChange, variant, setIsOpen, closeOnSelect }: DropdownButtonProps<T>) {
+export default function DropdownButton<T>({ value,  label, onChange, variant }: DropdownButtonProps<T>) {
     return (
         <button
-            onClick={() => {
-                onChange(value)
-                if (closeOnSelect) {
-                    setIsOpen(false)
-                }
-            }}
+            onClick={() => onChange(value)}
             className={`${styles.dropdownButton} ${styles[variant]}`}
         >
             { label }

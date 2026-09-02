@@ -97,28 +97,6 @@ export default function TimerDropdown ({ inputOptions, onChange, currentInput, g
                         />
                     )))}
                     {currentInput.variant === "count_down" && (
-                        <div
-                            className={styles.timeDropdownMenu}
-                        >
-                            {timerInputOptions.map((option) => {
-                                const newVal: TimerInput = {
-                                    variant: "count_down",
-                                    time: option.value
-                                }
-                                return (
-                                    <DropdownButton
-                                        value={newVal}
-                                        label={option.label}
-                                        onChange={onChange}
-                                        variant={"timer"}
-                                        setIsOpen={setIsOpen}
-                                        setIsVisible={setIsVisible}
-                                        closeOnSelect={true}
-                                        key={option.value}
-                                    />
-                                )
-                            })}
-                        </div>
                     )}
                 </div>
             )}

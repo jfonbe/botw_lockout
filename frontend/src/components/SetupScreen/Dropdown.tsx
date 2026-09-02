@@ -8,17 +8,18 @@ import styles from "../../css/Dropdown.module.css"
 
 
 type DropdownProps<T> = {
-    inputOptions: DropdownOptions<T>,
-    currentInput: T,
-    onChange: (value: T) => void,
-    getValueKey: (value: T) => React.Key
+    inputOptions: DropdownOptions<T>
+    label: string
+    onChange: (value: T) => void
     variant:
         | "grid"
         | "difficulty"
         | "timer",
+    children?: (closeDropdown: () => void) => React.ReactNode
+    closeOnSelect: boolean
 }
 
-export default function Dropdown<T> ({inputOptions, currentInput, onChange, getValueKey, variant}: DropdownProps<T>) {
+export default function Dropdown<T> ({inputOptions, label, onChange, variant, children, closeOnSelect}: DropdownProps<T>) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -37,12 +38,20 @@ export default function Dropdown<T> ({inputOptions, currentInput, onChange, getV
     }, [])
 
     const clickHandler = () => {
-        setIsOpen(!isOpen)
+        setIsOpen(prev => !prev)
     }
 
-    const currentOption = inputOptions.options.find(
-        option => getValueKey(option.value) === getValueKey(currentInput)
-    )
+    const closeDropdown = () => {
+        setIsOpen(false)
+    }
+
+    const handleSelect = (value: T) => {
+        onChange(value)
+
+        if (closeOnSelect) {
+            closeDropdown()
+        }
+    }
 
     return (
         <div
@@ -55,23 +64,27 @@ export default function Dropdown<T> ({inputOptions, currentInput, onChange, getV
                 onClick={clickHandler}
                 className={styles.dropdownInput}
             >
-                {currentOption?.label ?? inputOptions.title}
+                {label}
             </button>
-            <div
-                className={`${styles.dropdownMenu} ${isOpen ? styles.visible : styles.hidden}`}
-            >
-                {inputOptions.options.map((option => (
-                    <DropdownButton
-                        value={option.value}
-                        label={option.label}
-                        onChange={onChange}
-                        variant={variant}
-                        setIsOpen={setIsOpen}
-                        closeOnSelect={true}
-                        key={getValueKey(option.value)}
-                    />
-                )))}
-            </div>
+
+            {isOpen && (
+                <div
+                    className={`${styles.dropdownMenu} ${isOpen ? styles.visible : styles.hidden}`}
+                >
+                    {inputOptions.options.map((option => (
+                        <DropdownButton
+                            value={option.value}
+                            label={option.label}
+                            onChange={handleSelect}
+                            variant={variant}
+                            key={option.label}
+                        />
+                    )))}
+
+                    {children?.(closeDropdown)}
+
+                </div>
+            )}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import Dropdown from "./Dropdown"
-import TimerDropdown from "./TimerDropdown"
+import TimerOptions from "./TimerOptions"
 import BoardGeneratorButton from "./BoardGeneratorButton"
 
 import { inputOptions } from "../../data/inputOptions"
@@ -11,12 +11,31 @@ import styles from "../../css/Settings.module.css"
 
 
 type SettingsProps = {
-    onStartGame: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    onInputChange: OnInputChange,
+    onStartGame: (event: React.MouseEvent<HTMLButtonElement>) => void
+    onInputChange: OnInputChange
     inputs: Inputs
 }
 
 export default function Settings({ inputs, onInputChange, onStartGame}: SettingsProps) {
+    const currentGridOption = inputOptions.grid.options.find(
+        option => (option.value.rows === inputs.grid.rows && option.value.cols === inputs.grid.cols)
+    )
+
+    const currentDifficultyOption = inputOptions.difficulty.options.find(
+        option => option.value === inputs.difficulty
+    )
+
+    const currentTimerOption = inputOptions.timer.options.find(
+        option => option.value.variant === inputs.timer.variant
+    )
+
+    const gridLabel = currentGridOption?.label ?? "Grid"
+    const difficultyLabel = currentDifficultyOption?.label ?? "Difficulty"
+    const timerLabel = currentTimerOption && inputs.timer.variant === "count_down" && inputs.timer.time
+        ? `${currentTimerOption.label} (${inputs.timer.time}H)`
+        : currentTimerOption?.label ?? "Timer"
+
+
     return (
         <div className={styles.settings}>
             <h1 className={styles.heading}>Breath of the Wild - Lockout</h1>
@@ -24,24 +43,34 @@ export default function Settings({ inputs, onInputChange, onStartGame}: Settings
                 <div className={styles.dropdownContainer}>
                     <Dropdown
                         inputOptions={inputOptions.grid}
-                        currentInput={inputs.grid}
+                        label={gridLabel}
                         onChange={(value) => onInputChange("grid", value)}
-                        getValueKey={(option) => `${option.rows}-${option.cols}`}
                         variant="grid"
+                        closeOnSelect={true}
                     />
                     <Dropdown
                         inputOptions={inputOptions.difficulty}
-                        currentInput={inputs.difficulty}
+                        label={difficultyLabel}
                         onChange={(value) => onInputChange("difficulty", value)}
-                        getValueKey={(option) => option}
                         variant="difficulty"
+                        closeOnSelect={true}
                     />
-                    <TimerDropdown
+                    <Dropdown
                         inputOptions={inputOptions.timer}
-                        currentInput={inputs.timer}
+                        label={timerLabel}
                         onChange={(value) => onInputChange("timer", value)}
-                        getValueKey={(option) => option.variant}
-                    />
+                        variant="timer"
+                        closeOnSelect={false}
+                    >
+                        {(closeDropdown) =>
+                            inputs.timer.variant === "count_down" && (
+                                <TimerOptions
+                                    onChange={(value) => {onInputChange("timer", value)}}
+                                    closeDropdown={closeDropdown}
+                                />
+                            )
+                        }
+                    </Dropdown>
                 </div>
                 <BoardGeneratorButton
                     onStartGame={onStartGame}
