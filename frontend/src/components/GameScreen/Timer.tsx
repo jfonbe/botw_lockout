@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 
-import type { TimerSettings } from "../../types/settings"
+import type { TimerInput } from "../../types/settings"
 
 import styles from "../../css/Timer.module.css"
 
 
 type TimerProps = {
-    timerSettings: TimerSettings
+    timerSettings: TimerInput
 }
 
 export default function Timer({ timerSettings }: TimerProps) {
@@ -22,10 +22,9 @@ export default function Timer({ timerSettings }: TimerProps) {
         return () => clearInterval(interval)
     }, [])
 
-    const startTime = 3600000 * timerSettings.time
     const lapsedTime = Math.max(
-        timerSettings.variant === "count_down"
-            ? startTime - time
+        timerSettings.variant === "count_down" && timerSettings.time
+            ? 3600000 * timerSettings.time - time
             : time,
         0
     )

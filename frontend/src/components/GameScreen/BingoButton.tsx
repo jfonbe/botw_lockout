@@ -5,10 +5,10 @@ import { useState } from "react"
 
 type BingoButtonProps = {
     boardTask: BoardTask,
-    updateActivity: (row: number, col: number, isDone: boolean) => void,
+    onBoardStateChange: (row: number, col: number, isDone: boolean) => void,
 }
 
-export default function BingoButton({ boardTask, updateActivity}: BingoButtonProps) {
+export default function BingoButton({ boardTask, onBoardStateChange}: BingoButtonProps) {
     const [isDone, setIsDone] = useState<boolean>(false)
 
     const row = boardTask.placement.row
@@ -16,7 +16,7 @@ export default function BingoButton({ boardTask, updateActivity}: BingoButtonPro
     const text = boardTask.text
 
     const clickHandler = () => {
-        updateActivity(row, col, !isDone)
+        onBoardStateChange(row, col, !isDone)
         setIsDone(!isDone)
     }
 

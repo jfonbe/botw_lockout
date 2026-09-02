@@ -7,10 +7,10 @@ import { createGameSettings } from "../../helpers/settings/settingsHelper"
 import type { Inputs } from "../../types/settings"
 
 type SetupScreenProps = {
-    startGame: (input: Inputs) => void
+    onGameStart: (input: Inputs) => void
 }
 
-export default function SetupScreen({ startGame }: SetupScreenProps) {
+export default function SetupScreen({ onGameStart }: SetupScreenProps) {
     const [inputs, setInputs] = useState<Inputs>({
         grid: {
             rows: 5,
@@ -22,7 +22,7 @@ export default function SetupScreen({ startGame }: SetupScreenProps) {
         }
     })
 
-    const updateInputs = <K extends keyof Inputs>(
+    const handleInputUpdates = <K extends keyof Inputs>(
         key: K,
         value: Inputs[K]
     ) => {
@@ -32,15 +32,11 @@ export default function SetupScreen({ startGame }: SetupScreenProps) {
         }))
     }
 
-    const onStartGame = () => {
-        startGame(createGameSettings(inputs))
-    }
-
     return (
         <Settings
             inputs={inputs}
-            onInputChange={updateInputs}
-            onStartGame={onStartGame}
+            onInputChange={handleInputUpdates}
+            onStartGame={() => onGameStart(createGameSettings(inputs))}
         />
     )
 }

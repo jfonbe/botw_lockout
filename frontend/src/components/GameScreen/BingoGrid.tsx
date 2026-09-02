@@ -9,10 +9,10 @@ import styles from "../../css/BingoGrid.module.css"
 type BingoGridProps = {
     boardTasks: BoardTask[],
     gridSize: GridSetting,
-    updateActivity: (row: number, col: number, isDone: boolean) => void
+    onBoardStateChange: (row: number, col: number, isDone: boolean) => void
 }
 
-export default function BingoGrid({ boardTasks, gridSize, updateActivity }: BingoGridProps) {
+export default function BingoGrid({ boardTasks, gridSize, onBoardStateChange }: BingoGridProps) {
     return (
         <div
             className={styles.bingoGrid}
@@ -29,7 +29,7 @@ export default function BingoGrid({ boardTasks, gridSize, updateActivity }: Bing
                         return <BingoButton
                             key={col}
                             boardTask={boardTask}
-                            updateActivity={updateActivity}
+                            onBoardStateChange={onBoardStateChange}
                         />
                     })}
                 </div>

@@ -14,7 +14,7 @@ export default function DropdownButton<T>({ value,  label, onChange, variant }: 
             onClick={() => onChange(value)}
             className={`${styles.dropdownButton} ${styles[variant]}`}
         >
-            { label }
+            {label}
         </button>
     )
 }

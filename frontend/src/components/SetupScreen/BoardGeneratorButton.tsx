@@ -2,7 +2,7 @@ import styles from "../../css/BoardGeneratorButton.module.css"
 
 
 type BoardGeneratorButtonProps = {
-    onStartGame: (event: React.MouseEvent<HTMLButtonElement>) => void
+    onStartGame: () => void
 }
 
 export default function BoardGeneratorButton({ onStartGame }: BoardGeneratorButtonProps) {

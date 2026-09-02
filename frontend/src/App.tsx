@@ -11,7 +11,7 @@ import './App.css'
 export default function App() {
   const [boardSettings, setBoardSettings] = useState<Inputs>()
 
-  const startGame = (inputs: Inputs) => {
+  const handleGameStart = (inputs: Inputs) => {
     const newBoardSettings: Inputs = {
       ...inputs
     }
@@ -26,7 +26,7 @@ export default function App() {
         />
       ) : (
         <SetupScreen
-          startGame={startGame}
+          onGameStart={handleGameStart}
         />
       )}
     </>

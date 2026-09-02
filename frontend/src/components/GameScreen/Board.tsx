@@ -10,10 +10,10 @@ type BoardProps = {
     gridSettings: GridInput
     timerSettings: TimerInput
     tasks: BoardTask[]
-    updateActivity: (row: number, col: number, isDone: boolean) => void
+    onBoardStateChange: (row: number, col: number, isDone: boolean) => void
 }
 
-export default function Board({ gridSettings, timerSettings, tasks, updateActivity }: BoardProps) {
+export default function Board({ gridSettings, timerSettings, tasks, onBoardStateChange }: BoardProps) {
     return (
         <div
             className={styles.board}
@@ -24,7 +24,7 @@ export default function Board({ gridSettings, timerSettings, tasks, updateActivi
             <BingoGrid
                 boardTasks={tasks}
                 gridSize={gridSettings}
-                updateActivity={updateActivity}
+                onBoardStateChange={onBoardStateChange}
             />
             <Timer
                 timerSettings={timerSettings}

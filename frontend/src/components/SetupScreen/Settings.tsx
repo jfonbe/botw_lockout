@@ -11,7 +11,7 @@ import styles from "../../css/Settings.module.css"
 
 
 type SettingsProps = {
-    onStartGame: (event: React.MouseEvent<HTMLButtonElement>) => void
+    onStartGame: () => void
     onInputChange: OnInputChange
     inputs: Inputs
 }
