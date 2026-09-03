@@ -30,7 +30,6 @@ export type OnInputChange = <K extends keyof Inputs>(
 ) => void
 
 export type BoardTask = {
-    placement: Placement,
     text: string,
     isCompleted: boolean
 }

@@ -4,17 +4,14 @@ import styles from "../../css/BingoButton.module.css"
 
 type BingoButtonProps = {
     boardTask: BoardTask
+    placement: { row: number, col: number }
     isDone: boolean
     onBoardStateChange: (row: number, col: number, isDone: boolean) => void
 }
 
-export default function BingoButton({ boardTask, isDone, onBoardStateChange}: BingoButtonProps) {
-    const row = boardTask.placement.row
-    const col = boardTask.placement.col
-    const text = boardTask.text
-
+export default function BingoButton({ boardTask, placement, isDone, onBoardStateChange}: BingoButtonProps) {
     const clickHandler = () => {
-        onBoardStateChange(row, col, !isDone)
+        onBoardStateChange(placement.row, placement.col, !isDone)
     }
 
     return (
@@ -26,7 +23,7 @@ export default function BingoButton({ boardTask, isDone, onBoardStateChange}: Bi
                 <span
                     className={styles.text}
                 >
-                    {text}
+                    {boardTask.text}
                 </span>
             </button>
         </>

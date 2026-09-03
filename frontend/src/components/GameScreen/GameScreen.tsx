@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 import Board from "./Board"
 
-import { getBoardTasksArray } from '../../helpers/tasks/tasksHelper'
+import { getBoardTasksGrid } from '../../helpers/tasks/tasksHelper'
 import { fetchTasks } from '../../helpers/api/fetchHelper'
 
 import type { Inputs } from "../../types/settings"
@@ -15,7 +15,7 @@ type GameScreenProps = {
 }
 
 export default function GameScreen({ boardSettings }: GameScreenProps) {
-    const [tasks, setTasks] = useState<BoardTask[]>([])
+    const [tasks, setTasks] = useState<BoardTask[][]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
@@ -31,7 +31,7 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
         const loadTasks = async () => {
             try {
                 const fetchedTasks = await fetchTasks()
-                setTasks(getBoardTasksArray(fetchedTasks, boardSettings.difficulty, boardSettings.grid))
+                setTasks(getBoardTasksGrid(fetchedTasks, boardSettings.difficulty, boardSettings.grid))
             } catch {
                 setError("Tasks konnten nicht geladen werden.")
             } finally {
@@ -42,11 +42,13 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
         } , [])
 
     const handleBoardState = (row: number, col: number, isDone: boolean) => {
-        const newBoard = [...boardState]
-        newBoard[row] = [...newBoard[row]]
-        newBoard[row][col] = isDone
+        setBoardState(previousBoard => {
+            const newBoard = [...previousBoard]
+            newBoard[row] = [...newBoard[row]]
+            newBoard[row][col] = isDone
 
-        setBoardState(newBoard)
+            return newBoard
+        })
     }
 
     if (isLoading == true) {
@@ -56,7 +58,6 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
     } else {
         return (
             <Board
-                gridSettings={boardSettings.grid}
                 timerSettings={boardSettings.timer}
                 tasks={tasks}
                 boardState={boardState}
