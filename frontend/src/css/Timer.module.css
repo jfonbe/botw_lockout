@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    justify-self: center;
 
     width: 100%;
     padding-top: calc(var(--game-size) * 0.03);
