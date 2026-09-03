@@ -27,8 +27,8 @@
     flex-direction: column;
     justify-content: space-between;
 
-    height: 200px;
-    width: calc(100% - 80px);
+    min-height: 200px;
+    width: 95%;
     max-width: 1800px;
     padding: 20px;
 
@@ -46,7 +46,7 @@
 
 @media (max-width: 1200px) {
     .inputContainer {
-        height: 450px;
+        min-height: 450px;
     }
 
     .dropdownContainer {

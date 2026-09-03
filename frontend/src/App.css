@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 :root {
   --bg-color-1: #1E2326;
   --bg-color-1-brighter: #22282b;
@@ -12,9 +18,7 @@
 }
 
 html, body {
-  height: 100vh;
-  width: 100vw;
-
+  min-height: 100%;
   margin: 0;
   padding: 0;
 
@@ -27,10 +31,14 @@ html, body {
 }
 
 #root {
-  height: 100vh;
+  min-height: 100dvh;
   width: 100vw;
 
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+button {
+    font: inherit;
 }

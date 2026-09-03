@@ -4,7 +4,6 @@
     align-items: center;
 
     height: 50px;
-    margin: 5px;
 
     font-size: 18px;
 
@@ -13,7 +12,10 @@
     border: 1px solid var(--fg-color-1);
     border-radius: 6px;
 
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .dropdownButton:hover {
@@ -23,12 +25,9 @@
     border-color: var(--green-color);
 }
 
-.grid {
-    width: calc((100% - 30px) / 3);
-}
-
+.grid,
 .difficulty {
-    width: calc((100% - 30px) / 3);
+    width: calc(100% / 3);
 }
 
 .timer {

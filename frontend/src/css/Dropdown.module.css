@@ -1,10 +1,11 @@
 .dropdown {
     display: flex;
     flex-direction: column;
+    flex: 1;
 
     position: relative;
 
-    width: calc(100%/3);
+    min-width: 0;
     height: 100%;
     margin: 0 5px;
 
@@ -44,20 +45,21 @@
 
 .dropdownInput:hover {
     cursor: pointer;
-    border: 1px solid var(--fg-color-2);
+    border-color: var(--fg-color-2);
 }
 
 .dropdownMenu {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 
     z-index: 1000;
 
     position: absolute;
     top: 115%;
 
-    width: calc(100% - 22px);
+    width: 100%;
     padding: 10px;
 
     border-radius: 10px;
