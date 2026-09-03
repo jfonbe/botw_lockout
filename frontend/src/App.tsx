@@ -11,13 +11,6 @@ import './App.css'
 export default function App() {
   const [boardSettings, setBoardSettings] = useState<Inputs>()
 
-  const handleGameStart = (inputs: Inputs) => {
-    const newBoardSettings: Inputs = {
-      ...inputs
-    }
-    setBoardSettings(newBoardSettings)
-  }
-
   return (
     <>
       {boardSettings !== undefined ? (
@@ -26,7 +19,7 @@ export default function App() {
         />
       ) : (
         <SetupScreen
-          onGameStart={handleGameStart}
+          onGameStart={setBoardSettings}
         />
       )}
     </>

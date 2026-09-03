@@ -7,12 +7,13 @@ import styles from "../../css/BingoGrid.module.css"
 
 
 type BingoGridProps = {
-    boardTasks: BoardTask[],
-    gridSize: GridSetting,
+    boardTasks: BoardTask[]
+    gridSize: GridSetting
+    boardState: boolean[][]
     onBoardStateChange: (row: number, col: number, isDone: boolean) => void
 }
 
-export default function BingoGrid({ boardTasks, gridSize, onBoardStateChange }: BingoGridProps) {
+export default function BingoGrid({ boardTasks, gridSize, boardState, onBoardStateChange }: BingoGridProps) {
     return (
         <div
             className={styles.bingoGrid}
@@ -29,6 +30,7 @@ export default function BingoGrid({ boardTasks, gridSize, onBoardStateChange }: 
                         return <BingoButton
                             key={col}
                             boardTask={boardTask}
+                            isDone={boardState[row][col]}
                             onBoardStateChange={onBoardStateChange}
                         />
                     })}

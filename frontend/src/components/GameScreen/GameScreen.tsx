@@ -23,7 +23,7 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
     const emptyBoard = Array.from({ length: arrayLength }, () =>
         Array.from({ length: arrayLength }, () => false)
     )
-    const [boardState, setBoardState] = useState<Boolean[][]>(emptyBoard)
+    const [boardState, setBoardState] = useState<boolean[][]>(emptyBoard)
 
     useEffect(() => {
         const loadTasks = async () => {
@@ -57,6 +57,7 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
                 gridSettings={boardSettings.grid}
                 timerSettings={boardSettings.timer}
                 tasks={tasks}
+                boardState={boardState}
                 onBoardStateChange={handleBoardState}
             />
         )
