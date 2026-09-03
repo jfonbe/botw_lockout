@@ -49,12 +49,8 @@
 }
 
 .dropdownMenu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-
-    z-index: 1000;
+    display: grid;
+    z-index: 10;
 
     position: absolute;
     top: 115%;
@@ -74,14 +70,22 @@
         visibility 0.3s ease;
 }
 
-.timeDropdownMenu {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+.dropdownMenu.grid, .dropdownMenu.difficulty{
+    grid-template-columns: auto auto auto;
+    gap: 10px;
 }
 
-.time {
-    width: calc((100% - 40px) / 4);
+.dropdownMenu.timer {
+    grid-template-columns: auto auto;
+    gap: 10px;
+}
+
+.timeDropdownMenu {
+    grid-column: 1 / -1;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
 }
 
 @media (max-width: 1200px) {

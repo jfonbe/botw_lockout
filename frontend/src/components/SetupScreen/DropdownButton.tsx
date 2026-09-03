@@ -5,14 +5,13 @@ type DropdownButtonProps<T> = {
     value: T
     label: string,
     onChange: (value: T) => void,
-    variant: "grid" | "difficulty" | "timer"
 }
 
-export default function DropdownButton<T>({ value,  label, onChange, variant }: DropdownButtonProps<T>) {
+export default function DropdownButton<T>({ value,  label, onChange }: DropdownButtonProps<T>) {
     return (
         <button
             onClick={() => onChange(value)}
-            className={`${styles.dropdownButton} ${styles[variant]}`}
+            className={styles.dropdownButton}
         >
             {label}
         </button>
