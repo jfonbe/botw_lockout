@@ -1,5 +1,5 @@
 .loadingText, .errorText {
     color: var(--fg-color-2);
-    font-size: 5cqw;
+    font-size: clamp(1.25rem, 5vw, 5rem);
     text-align: center;
 }

@@ -1,12 +1,11 @@
 .bingoButton {
     flex: 1;
-    margin: clamp(1px, 0.5vw, 3px);
 
     aspect-ratio: 1;
 
     background-color: var(--bg-color-1);
     color: var(--fg-color-2);
-    border: clamp(1px, 0.5vw, 3px) solid var(--fg-color-1);
+    border: calc(var(--game-size) * 0.004) solid var(--fg-color-1);
     border-radius: 10px;
     font-weight: bold;
 
@@ -38,5 +37,5 @@
 
 .text {
     display: block;
-    font-size: 15cqw;
+    font-size: calc(var(--game-size) * 0.026);
 }

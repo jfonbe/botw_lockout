@@ -1,10 +1,13 @@
 .bingoGrid {
     display: flex;
     flex-direction: column;
+    gap: calc(var(--game-size) * 0.008);
 
-    width: min(90vw, 70vh);
-    min-width: 300px;
-    padding: min(1vw, 1vh);
+    flex: 1;
+    min-height: 0;
+
+    width: var(--game-size);
+    padding: calc(var(--game-size) * 0.015);
 
     background-color: var(--bg-color-2);
     border-radius: 15px;
@@ -14,6 +17,7 @@
 .gridRow {
     display: flex;
     justify-content: center;
+    gap: calc(var(--game-size) * 0.008);
 
     flex: 1;
     width: 100%;
