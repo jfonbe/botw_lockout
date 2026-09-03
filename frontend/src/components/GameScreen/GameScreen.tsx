@@ -19,11 +19,13 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    const arrayLength = boardSettings.grid.rows * boardSettings.grid.cols
-    const emptyBoard = Array.from({ length: arrayLength }, () =>
-        Array.from({ length: arrayLength }, () => false)
+    const createEmptyBoard = () => Array.from(
+        { length: boardSettings.grid.rows }, () => Array.from(
+            { length: boardSettings.grid.cols }, () => false
+        )
     )
-    const [boardState, setBoardState] = useState<boolean[][]>(emptyBoard)
+
+    const [boardState, setBoardState] = useState<boolean[][]>(createEmptyBoard)
 
     useEffect(() => {
         const loadTasks = async () => {
