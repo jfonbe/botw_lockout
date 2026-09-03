@@ -17,22 +17,22 @@ export default function Timer({ timerSettings }: TimerProps) {
 
         const interval = setInterval(() => {
             setTime(performance.now() - start)
-        }, 10)
+        }, 100)
 
         return () => clearInterval(interval)
     }, [])
 
-    const lapsedTime = Math.max(
+    const elapsedTime = Math.max(
         timerSettings.variant === "count_down" && timerSettings.time
             ? 3600000 * timerSettings.time - time
             : time,
         0
     )
 
-    const hours = Math.floor(lapsedTime / 3600000) % 24
-    const minutes = Math.floor(lapsedTime / 60000) % 60
-    const seconds = Math.floor(lapsedTime / 1000) % 60
-    const milliseconds = Math.floor(lapsedTime / 100) % 10
+    const hours = Math.floor(elapsedTime / 3600000) % 24
+    const minutes = Math.floor(elapsedTime / 60000) % 60
+    const seconds = Math.floor(elapsedTime / 1000) % 60
+    const milliseconds = Math.floor(elapsedTime / 100) % 10
 
     const format = (value: number) => {
         return Math.trunc(value).toString().padStart(2, "0")

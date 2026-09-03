@@ -10,14 +10,14 @@ type BingoButtonProps = {
 }
 
 export default function BingoButton({ boardTask, placement, isDone, onBoardStateChange}: BingoButtonProps) {
-    const clickHandler = () => {
+    const handleTaskToggle = () => {
         onBoardStateChange(placement.row, placement.col, !isDone)
     }
 
     return (
         <>
             <button
-                onClick={clickHandler}
+                onClick={handleTaskToggle}
                 className={`${styles.bingoButton} ${isDone ? styles.active : ""}`}
             >
                 <span
