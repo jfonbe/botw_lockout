@@ -9,12 +9,14 @@ type BingoGridProps = {
     boardTasks: BoardTask[][]
     boardState: boolean[][]
     onBoardStateChange: (row: number, col: number, isDone: boolean) => void
+    isVisible: boolean
 }
 
-export default function BingoGrid({ boardTasks, boardState, onBoardStateChange }: BingoGridProps) {
+export default function BingoGrid({ boardTasks, boardState, onBoardStateChange, isVisible }: BingoGridProps) {
+    console.log(isVisible)
     return (
         <div
-            className={styles.bingoGrid}
+            className={`${styles.bingoGrid} ${isVisible ? styles.visible : styles.hidden}`}
         >
             {boardTasks.map((row, rowIndex) => (
                 <div key={rowIndex} className={styles.gridRow}>

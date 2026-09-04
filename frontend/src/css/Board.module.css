@@ -26,3 +26,86 @@
     text-shadow: 0 0 10px var(--heading-color);
 }
 
+.wrapper {
+    position: relative;
+
+    height: var(--game-size);
+    width: var(--game-size);
+}
+
+.revealButton {
+    position: absolute;
+
+    height: inherit;
+    width: inherit;
+
+    color: var(--fg-color-2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: calc(var(--game-size) * 0.06);
+
+    background-color: var(--bg-color-2);
+    border-radius: 15px;
+    border: 1px solid var(--fg-color-2);
+
+    transition:
+        font-size 0.2s ease,
+        letter-spacing 0.2s ease,
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.revealButton::before {
+    content: "";
+    position: absolute;
+    inset: 40%;
+    opacity: 0%;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(var(--green-color), var(--green-color))
+            top left / calc(var(--game-size) * 0.05) 2px no-repeat,
+        linear-gradient(var(--green-color), var(--green-color))
+            top left / 2px calc(var(--game-size) * 0.05) no-repeat,
+
+        linear-gradient(var(--green-color), var(--green-color))
+            top right / calc(var(--game-size) * 0.05) 2px no-repeat,
+        linear-gradient(var(--green-color), var(--green-color))
+            top right / 2px calc(var(--game-size) * 0.05) no-repeat,
+
+        linear-gradient(var(--green-color), var(--green-color))
+            bottom left / calc(var(--game-size) * 0.05) 2px no-repeat,
+        linear-gradient(var(--green-color), var(--green-color))
+            bottom left / 2px calc(var(--game-size) * 0.05) no-repeat,
+
+        linear-gradient(var(--green-color), var(--green-color))
+            bottom right / calc(var(--game-size) * 0.05) 2px no-repeat,
+        linear-gradient(var(--green-color), var(--green-color))
+            bottom right / 2px calc(var(--game-size) * 0.05) no-repeat;
+
+    transition:
+        inset 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.revealButton:hover {
+    cursor: pointer;
+    font-size: calc(var(--game-size) * 0.10);
+    letter-spacing: 0.1em;
+    color: var(--green-color);
+    background-color: var(--bg-color-1-darker);
+}
+
+.revealButton:hover::before {
+    inset: 4%;
+    opacity: 100%;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}

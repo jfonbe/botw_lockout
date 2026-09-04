@@ -14,6 +14,14 @@
     border: 1px solid var(--fg-color-2);
 }
 
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
 .gridRow {
     display: flex;
     justify-content: center;
