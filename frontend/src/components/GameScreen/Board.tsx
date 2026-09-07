@@ -16,6 +16,7 @@ type BoardProps = {
 
 export default function Board({ timerSettings, tasks, boardState, onBoardStateChange }: BoardProps) {
     const [boardIsVisible, setBoardIsVisible] = useState<boolean>(false)
+    const [timerStarted, setTimerStarted] = useState<boolean>(false)
 
     return (
         <div
@@ -27,7 +28,10 @@ export default function Board({ timerSettings, tasks, boardState, onBoardStateCh
             <div className={styles.wrapper}>
                 <button
                     className={`${styles.revealButton} ${boardIsVisible ? styles.hidden : styles.visible}`}
-                    onClick={() => setBoardIsVisible(true)}
+                    onClick={() => {
+                        setBoardIsVisible(true)
+                        setTimerStarted(true)
+                    }}
                 >
                     Reveal Board
                 </button>
@@ -41,6 +45,7 @@ export default function Board({ timerSettings, tasks, boardState, onBoardStateCh
             </div>
             <Timer
                 timerSettings={timerSettings}
+                timerStarted={timerStarted}
             />
         </div>
     )

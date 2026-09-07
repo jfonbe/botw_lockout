@@ -7,20 +7,22 @@ import styles from "../../css/Timer.module.css"
 
 type TimerProps = {
     timerSettings: TimerInput
+    timerStarted: boolean
 }
 
-export default function Timer({ timerSettings }: TimerProps) {
+export default function Timer({ timerSettings, timerStarted }: TimerProps) {
     const [time, setTime] = useState(0)
 
     useEffect(() => {
-        const start = performance.now()
+        if (timerStarted) {
+            const start = performance.now()
 
-        const interval = setInterval(() => {
-            setTime(performance.now() - start)
-        }, 100)
+            const interval = setInterval(() => {
+                setTime(performance.now() - start)
+            }, 100)
 
-        return () => clearInterval(interval)
-    }, [])
+            return () => clearInterval(interval)}
+    }, [timerStarted])
 
     const elapsedTime = Math.max(
         timerSettings.variant === "count_down" && timerSettings.time
