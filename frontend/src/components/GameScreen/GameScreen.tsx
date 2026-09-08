@@ -27,6 +27,7 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
 
     const [boardState, setBoardState] = useState<boolean[][]>(createEmptyBoard)
     const [points, setPoints] = useState<number>(0)
+    let lineCount = 0
 
     useEffect(() => {
         const loadTasks = async () => {
@@ -43,17 +44,38 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
         } , [])
 
     const handleBoardState = (row: number, col: number, isDone: boolean) => {
-        isDone
-            ? setPoints((prev) => prev + 1)
-            :setPoints((prev) => prev - 1)
+        const previousValue = boardState[row][col]
 
-        setBoardState(previousBoard => {
-            const newBoard = [...previousBoard]
-            newBoard[row] = [...newBoard[row]]
-            newBoard[row][col] = isDone
+        if (previousValue !== isDone) {
+            setPoints(prev => isDone ? prev + 1 : prev - 1)
+        }
 
-            return newBoard
+        const newBoard = [...boardState]
+        newBoard[row] = [...newBoard[row]]
+        newBoard[row][col] = isDone
+
+        lineCount = calcLineCount(newBoard)
+
+        setBoardState(newBoard)
+    }
+
+    const calcLineCount = (board: boolean[][]) => {
+        let lineCount = 0
+
+/*         board.forEach(element => {
+            if (element.every((currentElememt) => currentElememt === true)) lineCount++
         })
+
+        board.every(row => {
+            const indexArray: number[] = []
+            row.some((elem, index) => {
+                if(elem === true) indexArray.push(index)
+            })
+
+
+        }) */
+
+        return lineCount
     }
 
     if (isLoading == true) {
@@ -68,6 +90,7 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
                 boardState={boardState}
                 onBoardStateChange={handleBoardState}
                 points={points}
+                lineCount={lineCount}
             />
         )
     }

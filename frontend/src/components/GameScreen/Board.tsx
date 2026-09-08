@@ -16,9 +16,10 @@ type BoardProps = {
     boardState: boolean[][]
     onBoardStateChange: (row: number, col: number, isDone: boolean) => void
     points: number
+    lineCount: number
 }
 
-export default function Board({ timerSettings, tasks, boardState, onBoardStateChange, points }: BoardProps) {
+export default function Board({ timerSettings, tasks, boardState, onBoardStateChange, points, lineCount }: BoardProps) {
     const [boardIsVisible, setBoardIsVisible] = useState<boolean>(false)
     const [timerStarted, setTimerStarted] = useState<boolean>(false)
 

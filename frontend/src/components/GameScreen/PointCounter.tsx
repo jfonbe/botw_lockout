@@ -6,8 +6,8 @@ type PointCounterProps = {
 
 export default function PointCounter({points}: PointCounterProps) {
     return (
-        <div className={styles.pointCounter}>
-            <span className={styles.text}>Player: {points}</span>
-        </div>
+        <button className={styles.pointCounter}>
+            <span className={styles.text}>Player: {points} <span className={styles.pointType}>Punkte</span></span>
+        </button>
     )
 }
