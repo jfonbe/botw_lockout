@@ -50,6 +50,7 @@ export default function Board({ timerSettings, tasks, boardState, onBoardStateCh
             </div>
             <PointCounter
                 points={points}
+                lineCount={lineCount}
             />
             <Timer
                 timerSettings={timerSettings}
