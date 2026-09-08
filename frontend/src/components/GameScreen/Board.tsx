@@ -1,20 +1,24 @@
+import { useState } from "react"
+
 import BingoGrid from "./BingoGrid"
 import Timer from "./Timer"
+import PointCounter from "./PointCounter"
 
 import type { BoardTask } from "../../types/components"
 import type { TimerInput } from "../../types/settings"
 
 import styles from "../../css/Board.module.css"
-import { useState } from "react"
+
 
 type BoardProps = {
     timerSettings: TimerInput
     tasks: BoardTask[][]
     boardState: boolean[][]
     onBoardStateChange: (row: number, col: number, isDone: boolean) => void
+    points: number
 }
 
-export default function Board({ timerSettings, tasks, boardState, onBoardStateChange }: BoardProps) {
+export default function Board({ timerSettings, tasks, boardState, onBoardStateChange, points }: BoardProps) {
     const [boardIsVisible, setBoardIsVisible] = useState<boolean>(false)
     const [timerStarted, setTimerStarted] = useState<boolean>(false)
 
@@ -43,6 +47,9 @@ export default function Board({ timerSettings, tasks, boardState, onBoardStateCh
                     isVisible={boardIsVisible}
                 />
             </div>
+            <PointCounter
+                points={points}
+            />
             <Timer
                 timerSettings={timerSettings}
                 timerStarted={timerStarted}

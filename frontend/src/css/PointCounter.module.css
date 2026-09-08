@@ -1,0 +1,19 @@
+.pointCounter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 50px;
+    width: var(--game-size);
+
+    margin-top: 20px;
+
+    background-color: var(--green-color);
+    border-radius: 10px;
+
+    container-type: size;
+}
+
+.text {
+    font-size: clamp(1rem, 4cqw, 1.5rem);
+}

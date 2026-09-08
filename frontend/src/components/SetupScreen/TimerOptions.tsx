@@ -31,7 +31,6 @@ export default function TimerOptions({ onChange, closeDropdown }: TimerOptionsPr
                             onChange(value)
                             closeDropdown()
                         }}
-                        variant={"timer"}
                         key={option.value}
                     />
                 )

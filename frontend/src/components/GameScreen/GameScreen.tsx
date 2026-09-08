@@ -26,6 +26,7 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
     )
 
     const [boardState, setBoardState] = useState<boolean[][]>(createEmptyBoard)
+    const [points, setPoints] = useState<number>(0)
 
     useEffect(() => {
         const loadTasks = async () => {
@@ -42,6 +43,10 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
         } , [])
 
     const handleBoardState = (row: number, col: number, isDone: boolean) => {
+        isDone
+            ? setPoints((prev) => prev + 1)
+            :setPoints((prev) => prev - 1)
+
         setBoardState(previousBoard => {
             const newBoard = [...previousBoard]
             newBoard[row] = [...newBoard[row]]
@@ -62,6 +67,7 @@ export default function GameScreen({ boardSettings }: GameScreenProps) {
                 tasks={tasks}
                 boardState={boardState}
                 onBoardStateChange={handleBoardState}
+                points={points}
             />
         )
     }

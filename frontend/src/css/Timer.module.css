@@ -4,7 +4,6 @@
     align-items: center;
 
     width: 100%;
-    padding-top: calc(var(--game-size) * 0.03);
 }
 
 .timer {

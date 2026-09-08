@@ -13,7 +13,6 @@ type BingoGridProps = {
 }
 
 export default function BingoGrid({ boardTasks, boardState, onBoardStateChange, isVisible }: BingoGridProps) {
-    console.log(isVisible)
     return (
         <div
             className={`${styles.bingoGrid} ${isVisible ? styles.visible : styles.hidden}`}
