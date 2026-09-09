@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 import type { TimerInput } from "../../types/settings"
 
@@ -12,17 +12,23 @@ type TimerProps = {
 
 export default function Timer({ timerSettings, timerStarted }: TimerProps) {
     const [time, setTime] = useState<number>(0)
+    const startTime = useRef<number | null>(null)
+    const stopTime = useRef<number | null>(null)
+    const pausedTime = useRef<number>(0)
     const [isPaused, setIsPaused] = useState<boolean>(false)
 
     useEffect(() => {
-        if (timerStarted && !isPaused) {
-            const start = performance.now()
+        if (timerStarted) {
+            if (startTime.current === null) {
+                startTime.current = performance.now()
+            }
 
-            const interval = setInterval(() => {
-                setTime(performance.now() - start)
-            }, 100)
-
-            return () => clearInterval(interval)
+            if (!isPaused) {
+                const interval = setInterval(() => {
+                    if (startTime.current !== null) setTime(performance.now() - startTime.current - pausedTime.current)
+                }, 100)
+                return () => clearInterval(interval)
+            }
         }
     }, [timerStarted, isPaused])
 
@@ -49,7 +55,11 @@ export default function Timer({ timerSettings, timerStarted }: TimerProps) {
     return (
         <button
             className={styles.timerContainer}
-            onClick={() => setIsPaused(prev => !prev)}
+            onClick={() => {
+                if (!isPaused) stopTime.current = performance.now()
+                else if (stopTime.current !== null) pausedTime.current += performance.now() - stopTime.current
+                setIsPaused(prev => !prev)
+            }}
         >
             <span className={styles.timer}>{counterString}</span>
         </button>
