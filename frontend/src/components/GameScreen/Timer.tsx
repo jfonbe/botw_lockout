@@ -61,7 +61,7 @@ export default function Timer({ timerSettings, timerStarted }: TimerProps) {
                 setIsPaused(prev => !prev)
             }}
         >
-            <span className={styles.timer}>{counterString}</span>
+            <span className={`${styles.timer} ${isPaused ? styles.stopped : ""}`}>{counterString}</span>
         </button>
     )
 }

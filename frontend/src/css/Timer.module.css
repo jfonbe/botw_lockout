@@ -21,3 +21,21 @@
     color: var(--fg-color-2);
     text-shadow: calc(var(--game-size) * 0.01) calc(var(--game-size) * 0.01) 0px black;
 }
+
+.stopped {
+  animation: colorChange 2s infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    color: var(--bg-color-2);
+  }
+
+  50% {
+    color: var(--fg-color-2);
+  }
+
+  100% {
+    color: var(--bg-color-2);
+  }
+}
