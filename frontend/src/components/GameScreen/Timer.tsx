@@ -11,18 +11,20 @@ type TimerProps = {
 }
 
 export default function Timer({ timerSettings, timerStarted }: TimerProps) {
-    const [time, setTime] = useState(0)
+    const [time, setTime] = useState<number>(0)
+    const [isPaused, setIsPaused] = useState<boolean>(false)
 
     useEffect(() => {
-        if (timerStarted) {
+        if (timerStarted && !isPaused) {
             const start = performance.now()
 
             const interval = setInterval(() => {
                 setTime(performance.now() - start)
             }, 100)
 
-            return () => clearInterval(interval)}
-    }, [timerStarted])
+            return () => clearInterval(interval)
+        }
+    }, [timerStarted, isPaused])
 
     const elapsedTime = Math.max(
         timerSettings.variant === "count_down" && timerSettings.time
@@ -45,10 +47,11 @@ export default function Timer({ timerSettings, timerStarted }: TimerProps) {
         : `${format(minutes)}:${format(seconds)}:${milliseconds}0`
 
     return (
-        <div
+        <button
             className={styles.timerContainer}
+            onClick={() => setIsPaused(prev => !prev)}
         >
             <span className={styles.timer}>{counterString}</span>
-        </div>
+        </button>
     )
 }
