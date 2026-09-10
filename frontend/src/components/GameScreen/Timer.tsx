@@ -56,6 +56,7 @@ export default function Timer({ timerSettings, timerStarted }: TimerProps) {
         <button
             className={styles.timerContainer}
             onClick={() => {
+                if (!timerStarted) return
                 if (!isPaused) stopTime.current = performance.now()
                 else if (stopTime.current !== null) pausedTime.current += performance.now() - stopTime.current
                 setIsPaused(prev => !prev)
