@@ -1,42 +1,40 @@
 # Zelda: Breath of the Wild Bingo
 
-Eine interaktive Bingo-Webanwendung für The Legend of Zelda: Breath of the Wild.
+Interactive Bingo-Board App for The Legend of Zelda: Breath of the Wild.
 
 ## Features
 
-- Konfigurierbare Spielfeldgröße
-- Verschiedene Schwierigkeitsstufen
-- Einstellbare Timer-Dauer
-- Automatische Generierung der Bingo-Aufgaben
-- Interaktives Spielfeld zum Markieren abgeschlossener Aufgaben
+- Choose your difficulty
+- Change board size
+- Customize the timer
+- Automatic bingo task generation
 
-## Technologien
+## Technologies
 
 - React
 - TypeScript
 - Node.js
 - HTML / CSS
 
-## Projektbeschreibung
+## Description
 
-Dieses Projekt ist eine eigenständige Webanwendung, die von der Idee
-hinter [Lockout.live](https://lockout.live/) inspiriert wurde.
+This project is a standalone web application inspired by the idea behind
+[Lockout.live](https://lockout.live/).
 
-Da Breath of the Wild dort nicht als Spiel verfügbar ist, habe ich eine
-eigene Variante für das Spiel entwickelt.
+Since The Legend of Zelda: Breath of the Wild is not available there, I developed my own version for the game.
 
-Das Frontend wurde mit React und TypeScript umgesetzt. Ein kleiner
-Node.js-Server stellt die verfügbaren Bingo-Aufgaben für das Frontend
-bereit.
+The frontend was built with React and TypeScript. A small Node.js server provides the available Bingo tasks to the frontend.
 
-## Screenshots
-
-## Installation
-
-### Voraussetzungen
+### Requirements
 
 - Node.js
 - npm
+
+### Installation
+
+```bash
+npm install
+```
 
 ### Frontend
 
@@ -44,10 +42,12 @@ bereit.
 cd frontend
 npm install
 npm run dev
+```
 
 ### Backend
 
 ```bash
-cd frontend
+cd backend
 npm install
 npm run dev
+```
