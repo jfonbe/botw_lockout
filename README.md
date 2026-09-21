@@ -1,12 +1,12 @@
 # Zelda: Breath of the Wild Bingo
 
-Interactive Bingo-Board App for The Legend of Zelda: Breath of the Wild.
+Interactive Bingo App for The Legend of Zelda: Breath of the Wild.
 
 ## Features
 
 - Choose your difficulty
 - Change board size
-- Customize the timer
+- Customize timer
 - Automatic bingo task generation
 
 ## Technologies
